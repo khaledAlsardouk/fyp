@@ -1,0 +1,4 @@
+
+b'0744171120111' ketchup hienz expiry date 1 1 2001
+b'1234567891231' mayonnaise expiry hello 12 20 311
+b'5283003208016' cheese manu
