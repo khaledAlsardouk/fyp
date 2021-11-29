@@ -4,7 +4,7 @@ import dateutil.parser as dparser
 from datetime import datetime
 import cv2
 from pyzbar.pyzbar import decode
-import ctypes  # An included library with Python install.
+import ctypes
 
 
 def Mbox(title, text, style):
@@ -17,15 +17,21 @@ path_to_tesseract = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 url = "http://192.168.1.100:8080/video"
 
 
-def calculate_eq(prod, exp, today):
+def calculate_eq(prod, exp, today, risk):
     x = (exp - today) / (today - prod)
-    low = 0.0209 * pow(x, 3) - 0.0948 * pow(x, 2) + 0.0899 * x + 0.0516
-    med = -0.00001 * pow(x, 5) + 0.00004 * pow(x, 4) - 0.0033 * pow(x, 3) - 0.0296 * pow(x, 2) + 0.3175 * x + 0.2856
-    high = -0.00001 * pow(x, 4) - 0.0002 * pow(x, 3) + 0.0179 * pow(x, 2) - 0.2414 * x + 1.8423
     print(f'the production date is : {prod} \n the expiry date is : {exp}')
-    print(" low risk : " + str(low))
-    print(" med risk : " + str(med))
-    print(" high risk : " + str(high))
+    if 'low' in risk:
+        low = 0.0209 * pow(x, 3) - 0.0948 * pow(x, 2) + 0.0899 * x + 0.0516
+        print(" low risk : " + str(low))
+        return
+    elif 'med' in risk:
+        med = -0.00001 * pow(x, 5) + 0.00004 * pow(x, 4) - 0.0033 * pow(x, 3) - 0.0296 * pow(x, 2) + 0.3175 * x + 0.2856
+        print(" med risk : " + str(med))
+        return
+    elif 'high' in risk:
+        high = -0.00001 * pow(x, 4) - 0.0002 * pow(x, 3) + 0.0179 * pow(x, 2) - 0.2414 * x + 1.8423
+        print(" high risk : " + str(high))
+        return
 
 
 def capture_image(url):
@@ -41,7 +47,7 @@ def capture_image(url):
 
 
 def extract_dates():
-    img = Image.open('c1.png')
+    img = Image.open('c2.png')
     pytesseract.tesseract_cmd = path_to_tesseract
     text = pytesseract.image_to_string(img)
     print(text[:-1])
@@ -49,11 +55,8 @@ def extract_dates():
     date1 = date.split("EXP")
     prod = dparser.parse(date1[0], fuzzy=True)
     exp = dparser.parse(date1[1], fuzzy=True)
-    today = datetime.datetime(2021, 11, 21)
-    try:
-        calculate_eq(prod, exp, today)
-    except:
-        print("failed")
+    today = datetime(2021, 11, 21)
+    return prod, today, exp
 
 
 def extract_barcode():
@@ -91,14 +94,17 @@ def searchitems(input):
     for line in obj1.readlines():
         line = line.rstrip()
         if input in line:
-            print(line)
-    obj1.close()
+            line=line.split(" ")
+            print("item type : " +line[1])
+            print("risk: " + line[2])
+            obj1.close()
+            return line
 
 
 capture_image(url)
-extract_dates()
+prod, today, exp = extract_dates()
 Mbox('barcode', 'scan the barcode', 1)
 capture_image(url)
-barcode_Num=extract_barcode()
-searchitems(barcode_Num)
-
+barcode_Num = extract_barcode()
+type = searchitems(barcode_Num)
+calculate_eq(prod, exp, today, type[2])
