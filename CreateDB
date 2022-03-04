@@ -1,0 +1,28 @@
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="",
+  #database="FYP"
+)
+mycursor = mydb.cursor()
+#mycursor.execute("CREATE DATABASE FYP")
+
+mycursor.execute("CREATE TABLE Users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), "
+                 "DOB DATE , Password VARCHAR(255),  prodcutList INT "
+                 ", GroceryList VARCHAR(255),ClosestReminder DATE , Phone VARCHAR(255) )")
+
+
+
+
+mycursor.execute("CREATE TABLE Product (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), Type VARCHAR(255), "
+                 "ExpiryDate DATE , ProductionDate DATE, PurchaseDate DATE, NotificationDate DATE )")
+
+mycursor.execute("CREATE TABLE ProductList ( Product_id INT ,Users_id INT,  FOREIGN KEY(Product_id)  REFERENCES Product(id) ,FOREIGN KEY(Users_id)  REFERENCES Users(id))")
+
+
+mycursor.execute("SHOW TABLES")
+
+for x in mycursor:
+ print(x)
