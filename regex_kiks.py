@@ -21,7 +21,7 @@ print(matches)
 print(matches_coordinates)
 print(clean_result)
 txt = '22'
-x = re.search("([\d]{1,2})?(/|-| |.)?(([\d]{1,2})|(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)|(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))(/|-| |.)?(([\d]{4})|[\d]{2})", txt)
+x = re.search("(([3][0-1])|([1-2][0-9])|([0][1-9]))?(/|-| |.)?((([0][1-9])|[1][0-2])|(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)|(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))(/|-| |.)?(([\d]{4})|[\d]{2})", txt)
 if x:
   print("YES! We have a match!")
   print(x.group())
