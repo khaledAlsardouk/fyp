@@ -33,7 +33,10 @@ def find_date_improved(text):
         return None
 def find_date_Improved1(text):
     try:
-        match = re.search("((([3][0-1])|([1-2][0-9])|([0][1-9]))(/|-| |.))?((([0][1-9])|[1][0-2])|(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)|(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))(/|-| |.)(([2][0][1-9][0-9])|([1-9][0-9]))", text)
+        match = re.search("((([3][0-1])|([1-2][0-9])|([0][1-9]))(/|-| |.))?((([0][1-9])|[1][0-2])|("
+                          "JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)|("
+                          "jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))(/|-| |.)(([2][0][1-9][0-9])|([1-9]["
+                          "0-9]))", text)
         return match.group()
     except:
         return None
