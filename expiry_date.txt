@@ -1,0 +1,11 @@
+‘Data e skadencés’ , ‘iraungitze-data’ , ‘,qaTa aaKaHH3HHR TOPMiHY’ , ‘rok upotrebe’ , ‘CPOK Ha roAHOCT’ , ‘data de caducitat’ , ‘data di perenzione’ ,
+‘Datum isteka roka trajanja’ , ‘Datum spotreby’ , ‘udløbsdato’ , ‘uiterste houdbaarheidsdatum’ , ‘aegumistähtaeg’ , ‘viimeinen käyttöpäivä’ , ‘date d'expiration’ ,
+‘ferfaldatum’ , ‘data de caducidade’ , ‘Haltbarkeitsdatum’ , ‘np€popnvia [imerominia lixis]’ , ‘Iejårati dåtum’ , ‘Fyrningardagsetning’ , ‘dåta criochnaithe’ ,
+‘data di scadenza’ , ‘derrguma termiQS’ , ‘galiojimo Iaikas’ , ‘Oflaafsdatum’ , ‘Aara Ha VICTeKYBaR,e’ , ‘data ta 'skadenza’ , ‘termin wa2noéci’ ,
+‘data de validade’ , ‘data expirärii’ , ‘cpoK FOAHOCTVI [srok godnosti]’ , ‘Ceann-latha criche’ , ‘POK ynoTpe6e [Rok upotrebe]’ , ‘dåtum spotreby’ ,
+‘Datum veljavnosti’ , ‘fecha de caducidad’ , ‘utgångsdatum’ , ‘"paKf1blK BaKblTbl’ , ‘TepMiH npuaTHocTi [termin prydatnosti]’ , ‘dyddiad dod i ben’ ,
+‘9'l'70'lN’ , ‘uqhunwUbtupjwU dwdllbun’ , ‘vaxtlndan’ , ‘[jiézhi riqi]’ , ‘[jiézhi riqi]’ , ‘ethi(i-l’ , ‘hnub tas sij hawm’ , ‘Oa»o$’ , ‘MepaiMHiH STY KYHi’ ,
+‘[manlyoil]’ , ‘xapaMAblK naTaCbl’ , ‘5ütm3C)39Q’ , ‘ayycax orH00’ , ‘füfä’ , ‘Glå61’ , ‘5)d806D’ , ‘MyxnaTM Tarv10ML1jaBV1’ , ‘Son kullanma tarihi’ ,
+‘gutarýan senesi’ , ‘muddati’ , ‘roja derbasî’ , ‘تاريخ إنتهاء الصلاحية’ , ‘roja derbasî’ , ‘vervaldatum’ , ‘tsiku lothera ntchito’ , ‘ranar karewa’ , ‘vbQchi mmebi’ ,
+‘itariki izarangiriraho’ , ‘letsatsi Ia pheletso’ , ‘zuva rekupera’ , ‘Taariikhda uu dhacayo’ , ‘tarehe ya kumalizika muda’ , ‘umhla WOKUPHELELWA’ , ‘Ojo ipari’ ,
+‘usuku Iokuphelelwa isikhathi’ , ‘Findato’ , ‘dat ekspirasyon’ , ‘expirata’ 
