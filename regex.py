@@ -5,7 +5,6 @@ import re
 import dateutil.parser as dparser
 
 
-
 def find_date_true(text):
     try:
         match = re.search(r'\d{1,2}[/. -]\d{1,2}[/. -]\d{2,4}', text)
@@ -22,7 +21,6 @@ def find_date_test_CMP1(text):
         return None
 
 
-
 def find_date_improved(text):
     try:
         match = re.search("(([3][0-1])|([1-2][0-9])|([0][1-9]))?(/|-| |.)?((([0][1-9])|[1][0-2])|("
@@ -31,6 +29,8 @@ def find_date_improved(text):
         return match.group()
     except:
         return None
+
+
 def find_date_Improved1(text):
     try:
         match = re.search("((([3][0-1])|([1-2][0-9])|([0][1-9]))(/|-| |.))?((([0][1-9])|[1][0-2])|("
@@ -40,6 +40,7 @@ def find_date_Improved1(text):
         return match.group()
     except:
         return None
+
 
 def find_date_test(text):
     try:
@@ -51,14 +52,12 @@ def find_date_test(text):
 
 def find_date_nottested(text):
     try:
-        match = re.search("(([0-9][0-9])|([0-9]))(/|\.| |-)(([0-9][0-9])|([0-9]))(/|\.| |-)(([0-9][0-9][0-9][0-9])|([0-9][0-9]))", text)
+        match = re.search(
+            "(([0-9][0-9])|([0-9]))(/|\.| |-)(([0-9][0-9])|([0-9]))(/|\.| |-)(([0-9][0-9][0-9][0-9])|([0-9][0-9]))",
+            text)
         return match.group()
     except:
         return None
-
-
-
-    
 
 
 def find_parser(text):

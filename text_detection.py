@@ -6,7 +6,7 @@ import numpy as np
 
 IMAGE_PATH = r"C:\Users\khale\Desktop\fyp\test-STUFF\dataset-dates\training\2.jpg"
 reader = easyocr.Reader(['en'])
-result = reader.readtext(IMAGE_PATH)
+result = reader.readtext(IMAGE_PATH,decoder='greedy',batch_size=50)
 top_left = tuple(result[0][0][0])
 bottom_right = tuple(result[0][0][2])
 text = result[0][1]
