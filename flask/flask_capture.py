@@ -11,8 +11,7 @@ switch=0        #to turn the camera on and off
 app = Flask(__name__)
 app.secret_key = "secret key"
 url = 'http://192.168.2.237:8080/video'
-camera = cv2.VideoCapture(0)    #cahnge 0 to url for IP web
-SAVED_FOLDER = 'shots/'        #directory for saved images
+camera = cv2.VideoCapture(url)    #cahnge 0 to url for IP web
 
 def generate_frames():      #camera
     global frame
@@ -49,11 +48,11 @@ def index():
             capture = 0
             switch = 0
             now = (datetime.datetime.now()).strftime("%f")  #generate name based on time
-            image_path = os.path.sep.join(['shots', "shot_{}.jpg".format(str(now).replace(":", ''))])
+            #image_path = os.path.sep.join(['shots', "shot_{}.jpg".format(str(now).replace(":", ''))])
+            image_path = './shots/' + now + '.jpg'
             cv2.imwrite(image_path, frame)
-            #image_path= image_path.replace("\\","/")
-            #flash(image_path)       shows the
-            #flash(td.OCR_TD(image_path))
+            #flash(image_path)           #shows the path
+            flash(td.OCR_TD(image_path))
         else:
             pass  # unknown
     elif request.method == 'GET':
