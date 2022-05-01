@@ -41,12 +41,18 @@ for filename in dirlist:
         if len(result1) == 0:
             b_set = set(result2)
             c_set = set(result3)
-            final_result = c_set.intersection(b_set).pop()
+            try:
+                final_result = c_set.intersection(b_set).pop()
+            except:
+                final_result= 'no date found'
         if len(result1) > 1:
             a_set = set(result1)
             b_set = set(result2)
             c_set = set(result3)
-            final_result = c_set.intersection(a_set.intersection(b_set)).pop()
+            try:
+                final_result = c_set.intersection(b_set).pop()
+            except:
+                final_result = 'no date found'
         print(final_result)
         print(str(final_result))
         counter = counter + 1
