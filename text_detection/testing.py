@@ -64,7 +64,7 @@ for filename in dirlist:
         except:
             date = final_result
 
-        file_str = str(filename) + ': ' + str(date)
+        file_str = str(filename) + ': date : ' + str(date) + " patterns result: " + str(final_result)
         f = open('results.txt', 'a')
         f.write(file_str)
         f.write('\n')
