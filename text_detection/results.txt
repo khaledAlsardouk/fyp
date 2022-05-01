@@ -1,20 +1,484 @@
-1: {'16102020'}
-2: {'31 12*22'}
-3: set()
-4: set()
-5: {'01/2020'}
-6: set()
-7: 
-8: 
-9: {'27/12/2019'}
-10: set()
-11: {'04/03/19', '04/06/20'}
-12: {'12/10/2021'}
-13: set()
-14: set()
-15: 
-16: set()
-17: set()
-18: set()
-19: set()
-20: 
+0.jpg: date : 16102020 patterns result: 16102020
+1.jpg: date : 2022-12-31 00:00:00 patterns result: 31 12*22
+2.jpg: date : 2021-04-03 00:00:00 patterns result: 04/03/2021
+4.jpg: date : 2021-01-20 00:00:00 patterns result: 20/01/2021
+5.jpg: date : no date found patterns result: no date found
+6.jpg: date : no date found patterns result: no date found
+7.jpg: date : no date found patterns result: no date found
+8.jpg: date : no date found patterns result: no date found
+9.jpg: date : 2020-06-21 00:00:00 patterns result: 21 06 2020
+10.jpg: date : no date found patterns result: no date found
+11.jpg: date : 2021-12-10 00:00:00 patterns result: 12/10/2021
+12.jpg: date : 11206452 patterns result: 11206452
+13.jpg: date : 2022-02-28 00:00:00 patterns result: 28/02/2022
+14.jpg: date : no date found patterns result: no date found
+15.jpg: date : 2022-03-01 00:00:00 patterns result: 03/2022
+16.jpg: date : no date found patterns result: no date found
+17.jpg: date : 2021-12-01 00:00:00 patterns result: 12/2021
+18.jpg: date : 30 11.2019 patterns result: 30 11.2019
+19.jpg: date : 2022-12-01 00:00:00 patterns result: 12/2022
+20.jpg: date : 30 06.2019 patterns result: 30 06.2019
+21.jpg: date : no date found patterns result: no date found
+22.jpg: date : 2022-03-01 00:00:00 patterns result: 03.01.2022
+23.jpg: date : no date found patterns result: no date found
+24.jpg: date : no date found patterns result: no date found
+25.jpg: date : no date found patterns result: no date found
+26.jpg: date : no date found patterns result: no date found
+27.jpg: date : no date found patterns result: no date found
+28.jpg: date : no date found patterns result: no date found
+29.jpg: date : no date found patterns result: no date found
+30.jpg: date : no date found patterns result: no date found
+30_dec0.jpg: date : no date found patterns result: no date found
+30_dec1.jpg: date : 2019-05-09 00:00:00 patterns result: 05/09/2019
+30_dec3.jpg: date : no date found patterns result: no date found
+30_dec7.jpg: date : 2019-01-21 00:00:00 patterns result: 21.01.2019
+30_dec8.jpg: date : 2019-03-20 00:00:00 patterns result: 20 03 19
+30_dec9.jpg: date : 2019-03-20 00:00:00 patterns result: 20 03 19
+30_dec11.jpg: date : 2018-01-12 00:00:00 patterns result: 01-12-2018
+30_dec12.jpg: date : no date found patterns result: no date found
+30_dec13.jpg: date : no date found patterns result: no date found
+30_dec14.jpg: date : no date found patterns result: no date found
+30_dec15.jpg: date : no date found patterns result: no date found
+30_dec16.jpg: date : no date found patterns result: no date found
+30_dec17.jpg: date : 2018-01-12 00:00:00 patterns result: 01-12-2018
+30_dec18.jpg: date : no date found patterns result: no date found
+30_dec19.jpg: date : 2019-05-09 00:00:00 patterns result: 05/09/2019
+30_dec20.jpg: date : no date found patterns result: no date found
+30_dec21.jpg: date : no date found patterns result: no date found
+30_dec22.jpg: date : 2020-01-21 00:00:00 patterns result: 21.01.20
+30_dec23.jpg: date : 2019-06-08 00:00:00 patterns result: 06.08.2019
+30_dec24.jpg: date : 2019-06-08 00:00:00 patterns result: 06.08.2019
+30_dec25.jpg: date : no date found patterns result: no date found
+30_dec26.jpg: date : no date found patterns result: no date found
+30_dec27.jpg: date : no date found patterns result: no date found
+30_dec28.jpg: date : 2019-03-15 00:00:00 patterns result: 15 03 19
+30_dec29.jpg: date : 2019-03-15 00:00:00 patterns result: 15 03 19
+30_dec30.jpg: date : 16-08.2019 patterns result: 16-08.2019
+30_dec31.jpg: date : no date found patterns result: no date found
+30_dec32.jpg: date : 2018-11-16 00:00:00 patterns result: 16 11 2018
+30_dec33.jpg: date : 2018-11-16 00:00:00 patterns result: 16 11 2018
+30_dec34.jpg: date : no date found patterns result: no date found
+30_dec37.jpg: date : no date found patterns result: no date found
+30_dec40.jpg: date : no date found patterns result: no date found
+30_dec46.jpg: date : 2019-10-01 00:00:00 patterns result: 10 01 2019
+30_dec47.jpg: date : no date found patterns result: no date found
+30_dec49.jpg: date : no date found patterns result: no date found
+30_dec50.jpg: date : no date found patterns result: no date found
+30_dec51.jpg: date : no date found patterns result: no date found
+30_dec56.jpg: date : no date found patterns result: no date found
+30_dec57.jpg: date : no date found patterns result: no date found
+30_dec58.jpg: date : no date found patterns result: no date found
+30_dec60.jpg: date : no date found patterns result: no date found
+30_dec61.jpg: date : 5 0 030 patterns result: 5 0 030
+30_dec62.jpg: date : no date found patterns result: no date found
+30_dec63.jpg: date : 2019-02-10 00:00:00 patterns result: 02.10.2019
+30_dec67.jpg: date : no date found patterns result: no date found
+30_dec68.jpg: date : 2019-05-22 00:00:00 patterns result: 22.05.2019
+30_dec69.jpg: date : 11106757 patterns result: 11106757
+30_dec70.jpg: date : no date found patterns result: no date found
+30_dec72.jpg: date : no date found patterns result: no date found
+30_dec73.jpg: date : 10911047 patterns result: 10911047
+30_dec74.jpg: date : 2021-05-01 00:00:00 patterns result: 05 2021
+30_dec77.jpg: date : 36 28 15 patterns result: 36 28 15
+30_dec78.jpg: date : no date found patterns result: no date found
+30_dec81.jpg: date : 2020-06-20 00:00:00 patterns result: 20/06/20
+30_dec83.jpg: date : no date found patterns result: no date found
+30_dec84.jpg: date : 27.12 2019 patterns result: 27.12 2019
+30_dec85.jpg: date : 27.12 2019 patterns result: 27.12 2019
+30_dec86.jpg: date : 2021-01-19 00:00:00 patterns result: 19/01/2021
+30_dec88.jpg: date : no date found patterns result: no date found
+30_dec89.jpg: date : 57 2 81 patterns result: 57 2 81
+30_dec93.jpg: date : 42/07 289 patterns result: 42/07 289
+30_dec95.jpg: date : 2019-12-02 00:00:00 patterns result: 12/02/2019
+30_dec96.jpg: date : 2019-04-10 00:00:00 patterns result: 04/10/2019
+30_dec97.jpg: date : no date found patterns result: no date found
+30_dec98.jpg: date : no date found patterns result: no date found
+30_dec99.jpg: date : no date found patterns result: no date found
+31.jpg: date : no date found patterns result: no date found
+32.jpg: date : no date found patterns result: no date found
+33.jpg: date : no date found patterns result: no date found
+34.jpg: date : 2019-10-21 00:00:00 patterns result: 21.10.19
+35.jpg: date : 2020-03-16 00:00:00 patterns result: 16/03/2020
+37.jpg: date : 2019-12-01 00:00:00 patterns result: 12/2019
+39.jpg: date : 2019-01-10 00:00:00 patterns result: 01-10 2019
+40.jpg: date : no date found patterns result: no date found
+41.jpg: date : no date found patterns result: no date found
+42.jpg: date : no date found patterns result: no date found
+43.jpg: date : 2619-03-21 00:00:00 patterns result: 21.03.2619
+44.jpg: date : 2019-07-08 00:00:00 patterns result: 07.08.2019
+46.jpg: date : 2019-12-08 00:00:00 patterns result: 12 08 2019
+47.jpg: date : 2019-12-08 00:00:00 patterns result: 12 08 2019
+48.jpg: date : 2019-07-29 00:00:00 patterns result: 29 07 2019
+49.jpg: date : 09/15.53 patterns result: 09/15.53
+50.jpg: date : no date found patterns result: no date found
+51.jpg: date : no date found patterns result: no date found
+52.jpg: date : no date found patterns result: no date found
+53.jpg: date : 2019-01-06 00:00:00 patterns result: 01/06/2019
+54.jpg: date : 2019-06-01 00:00:00 patterns result: 06-2019
+55.jpg: date : no date found patterns result: no date found
+56.jpg: date : no date found patterns result: no date found
+57.jpg: date : no date found patterns result: no date found
+58.jpg: date : 2019-11-21 00:00:00 patterns result: 21/11/19
+59.jpg: date : no date found patterns result: no date found
+60.jpg: date : 2019-01-15 00:00:00 patterns result: 15/01/19
+61.jpg: date : no date found patterns result: no date found
+62.jpg: date : no date found patterns result: no date found
+63.jpg: date : 2019-07-27 00:00:00 patterns result: 27/07/2019
+64.jpg: date : no date found patterns result: no date found
+65.jpg: date : no date found patterns result: no date found
+66.jpg: date : no date found patterns result: no date found
+67.jpg: date : no date found patterns result: no date found
+68.jpg: date : 2019-06-07 00:00:00 patterns result: 06/07/19
+69.jpg: date : no date found patterns result: no date found
+70.jpg: date : 2019-12-10 00:00:00 patterns result: 12/10/2019
+71.jpg: date : no date found patterns result: no date found
+72.jpg: date : no date found patterns result: no date found
+73.jpg: date : no date found patterns result: no date found
+74.jpg: date : 2021-12-30 00:00:00 patterns result: 30.12.2021
+75.jpg: date : 2019-10-14 00:00:00 patterns result: 14/10/19
+76.jpg: date : no date found patterns result: no date found
+77.jpg: date : no date found patterns result: no date found
+78.jpg: date : no date found patterns result: no date found
+80.jpg: date : 2022-05-02 00:00:00 patterns result: 02.2021
+82.jpg: date : no date found patterns result: no date found
+83.jpg: date : no date found patterns result: no date found
+84.jpg: date : 2020-03-31 00:00:00 patterns result: 31/03/2020
+85.jpg: date : 2019-08-22 00:00:00 patterns result: 22.08.2019
+87.jpg: date : 2019-09-01 00:00:00 patterns result: 09.01.2019
+88.jpg: date : no date found patterns result: no date found
+89.jpg: date : no date found patterns result: no date found
+90.jpg: date : no date found patterns result: no date found
+91.jpg: date : 2019-07-19 00:00:00 patterns result: 19/07/19
+93.jpg: date : no date found patterns result: no date found
+94.jpg: date : 2019-09-14 00:00:00 patterns result: 14/09/19
+95.jpg: date : 2019-09-14 00:00:00 patterns result: 14/09/19
+96.jpg: date : 24.66.77 patterns result: 24.66.77
+97.jpg: date : 24.66.77 patterns result: 24.66.77
+98.jpg: date : no date found patterns result: no date found
+99.jpg: date : 2020-01-15 00:00:00 patterns result: 15/01/2020
+100.jpg: date : no date found patterns result: no date found
+112.jpg: date : 2019-12-20 00:00:00 patterns result: 20.12.2019
+113.jpg: date : no date found patterns result: no date found
+114.jpg: date : no date found patterns result: no date found
+115.jpg: date : no date found patterns result: no date found
+116.jpg: date : no date found patterns result: no date found
+117.jpg: date : 24.66.77 patterns result: 24.66.77
+118.jpg: date : no date found patterns result: no date found
+119.jpg: date : no date found patterns result: no date found
+120.jpg: date : 2022-05-10 00:00:00 patterns result: 10.2021
+121.jpg: date : no date found patterns result: no date found
+122.jpg: date : no date found patterns result: no date found
+123.jpg: date : no date found patterns result: no date found
+124.jpg: date : 11109428 patterns result: 11109428
+125.jpg: date : no date found patterns result: no date found
+127.jpg: date : 2019-08-16 00:00:00 patterns result: 16.08.2019
+128.jpg: date : no date found patterns result: no date found
+129.jpg: date : no date found patterns result: no date found
+130.jpg: date : no date found patterns result: no date found
+131.jpg: date : no date found patterns result: no date found
+132.jpg: date : 2020-06-02 00:00:00 patterns result: 06/02/2020
+133.jpg: date : 2020-02-01 00:00:00 patterns result: 02/2020
+134.jpg: date : 03504757 patterns result: 03504757
+135.jpg: date : no date found patterns result: no date found
+136.jpg: date : no date found patterns result: no date found
+137.jpg: date : no date found patterns result: no date found
+138.jpg: date : no date found patterns result: no date found
+139.jpg: date : no date found patterns result: no date found
+140.jpg: date : no date found patterns result: no date found
+141.jpg: date : no date found patterns result: no date found
+142.jpg: date : 2020-04-01 00:00:00 patterns result: 04 2020
+143.jpg: date : 2020-08-01 00:00:00 patterns result: 08 2020
+144.jpg: date : 2019-08-01 00:00:00 patterns result: 08-2019
+145.jpg: date : no date found patterns result: no date found
+146.jpg: date : no date found patterns result: no date found
+147.jpg: date : no date found patterns result: no date found
+149.jpg: date : 2022-05-05 00:00:00 patterns result: 05.2020
+150.jpg: date : no date found patterns result: no date found
+151.jpg: date : no date found patterns result: no date found
+152.jpg: date : 2022-03-01 00:00:00 patterns result: 03/2022
+155.jpg: date : 2020-06-01 00:00:00 patterns result: 06/2020
+156.jpg: date : no date found patterns result: no date found
+157.jpg: date : no date found patterns result: no date found
+158.jpg: date : no date found patterns result: no date found
+159.jpg: date : no date found patterns result: no date found
+160.jpg: date : 2019-11-15 00:00:00 patterns result: 15.11.2019
+162.jpg: date : no date found patterns result: no date found
+164.jpg: date : no date found patterns result: no date found
+165.jpg: date : no date found patterns result: no date found
+166.jpg: date : no date found patterns result: no date found
+167.jpg: date : no date found patterns result: no date found
+169.jpg: date : 2020-02-24 00:00:00 patterns result: 24.02.2020
+170.jpg: date : 2019-09-14 00:00:00 patterns result: 14 09 19
+171.jpg: date : no date found patterns result: no date found
+172.jpg: date : no date found patterns result: no date found
+173.jpg: date : 2019-05-23 00:00:00 patterns result: 23/05/19
+175.jpg: date : no date found patterns result: no date found
+176.jpg: date : no date found patterns result: no date found
+177.jpg: date : no date found patterns result: no date found
+180.jpg: date : 14 03.2019 patterns result: 14 03.2019
+181.jpg: date : 2020-01-03 00:00:00 patterns result: 01-03-20
+182.jpg: date : 15912611 patterns result: 15912611
+184.jpg: date : 2023-07-08 00:00:00 patterns result: 7/08/2023
+185.jpg: date : 2022-05-11 00:00:00 patterns result: 11.2021
+186.jpg: date : no date found patterns result: no date found
+189.jpg: date : 2018-10-10 00:00:00 patterns result: 10.10.18
+192.jpg: date : 14,02.2019 patterns result: 14,02.2019
+193.jpg: date : 07,02.20 patterns result: 07,02.20
+194.jpg: date : 2020-01-01 00:00:00 patterns result: 01.01.20
+195.jpg: date : no date found patterns result: no date found
+196.jpg: date : no date found patterns result: no date found
+197.jpg: date : 2020-08-08 00:00:00 patterns result: 08/08/2020
+198.jpg: date : 41 4-61 patterns result: 41 4-61
+199.jpg: date : 2045-12-20 00:00:00 patterns result: 45.12.20
+200.jpg: date : no date found patterns result: no date found
+201.jpg: date : 2020-03-01 00:00:00 patterns result: 03/01/2020
+202.jpg: date : no date found patterns result: no date found
+203.jpg: date : 2020-09-30 00:00:00 patterns result: 30/09/2020
+204.jpg: date : 2020-07-01 00:00:00 patterns result: 07/2020
+206.jpg: date : 2020-01-16 00:00:00 patterns result: 16 01 2020
+207.jpg: date : 2019-11-02 00:00:00 patterns result: 11.02.19
+208.jpg: date : 2020-06-18 00:00:00 patterns result: 18 06 20
+209.jpg: date : 2022-05-04 00:00:00 patterns result: 04.2020
+210.jpg: date : no date found patterns result: no date found
+211.jpg: date : 2019-03-28 00:00:00 patterns result: 28.03.2019
+212.jpg: date : 2006-08-13 00:00:00 patterns result: 13 8 06
+213.jpg: date : 2022-05-04 00:00:00 patterns result: 04.2020
+214.jpg: date : 2020-01-01 00:00:00 patterns result: 1 1/2020
+215.jpg: date : 2049-09-25 00:00:00 patterns result: 25 09 2049
+216.jpg: date : no date found patterns result: no date found
+217.jpg: date : 2020-09-13 00:00:00 patterns result: 13/09/20
+218.jpg: date : 2020-04-25 00:00:00 patterns result: 25.04.2020
+219.jpg: date : 2022-05-03 00:00:00 patterns result: 03.2020
+220.jpg: date : 2019-01-15 00:00:00 patterns result: 01/15/19
+221.jpg: date : 2019-12-01 00:00:00 patterns result: 12/2019
+223.jpg: date : no date found patterns result: no date found
+224.jpg: date : 2020-10-01 00:00:00 patterns result: 10/2020
+225.jpg: date : 2020-08-18 00:00:00 patterns result: 18.08.2020
+226.jpg: date : 2020-11-30 00:00:00 patterns result: 30/11/2020
+227.jpg: date : 2020-07-24 00:00:00 patterns result: 24/07/2020
+228.jpg: date : 2020-02-05 00:00:00 patterns result: 02/05/20
+229.jpg: date : 2021-04-03 00:00:00 patterns result: 04/03/21
+231.jpg: date : no date found patterns result: no date found
+232.jpg: date : no date found patterns result: no date found
+233.jpg: date : no date found patterns result: no date found
+234.jpg: date : no date found patterns result: no date found
+235.jpg: date : 08001350 patterns result: 08001350
+236.jpg: date : no date found patterns result: no date found
+238.jpg: date : no date found patterns result: no date found
+239.jpg: date : no date found patterns result: no date found
+240.jpg: date : 2019-07-26 00:00:00 patterns result: 26/07/19
+241.jpg: date : no date found patterns result: no date found
+245.jpg: date : no date found patterns result: no date found
+246.jpg: date : 2020-03-15 00:00:00 patterns result: 15-03-2020
+247.jpg: date : 9400-06-13 00:00:00 patterns result: 6.13.9400
+248.jpg: date : 0 2 18 patterns result: 0 2 18
+249.jpg: date : 13,03,2019 patterns result: 13,03,2019
+253.jpg: date : 2019-09-15 00:00:00 patterns result: 15/09/2019
+254.jpg: date : no date found patterns result: no date found
+256.jpg: date : no date found patterns result: no date found
+257.jpg: date : 2019-01-08 00:00:00 patterns result: 01.08.19
+258.jpg: date : 2022-11-03 00:00:00 patterns result: 11.19 03
+259.jpg: date : no date found patterns result: no date found
+260.jpg: date : no date found patterns result: no date found
+262.jpg: date : no date found patterns result: no date found
+263.jpg: date : 2020-06-03 00:00:00 patterns result: 06/03/20
+264.jpg: date : 2018-11-12 00:00:00 patterns result: 11.12.2018
+265.jpg: date : 00 3 6221 patterns result: 00 3 6221
+266.jpg: date : no date found patterns result: no date found
+268.jpg: date : no date found patterns result: no date found
+270.jpg: date : no date found patterns result: no date found
+271.jpg: date : 2020-03-01 00:00:00 patterns result: 03 2020
+272.jpg: date : no date found patterns result: no date found
+273.jpg: date : 2020-01-01 00:00:00 patterns result: 01 2020
+274.jpg: date : 2020-03-01 00:00:00 patterns result: 03 2020
+276.jpg: date : no date found patterns result: no date found
+277.jpg: date : no date found patterns result: no date found
+278.jpg: date : 2020-04-23 00:00:00 patterns result: 23/04/2020
+279.jpg: date : no date found patterns result: no date found
+280.jpg: date : no date found patterns result: no date found
+281.jpg: date : no date found patterns result: no date found
+282.jpg: date : 2020-09-07 00:00:00 patterns result: 09.07.2020
+283.jpg: date : 2019-12-15 00:00:00 patterns result: 15.12.19
+284.jpg: date : 0 7/2020 patterns result: 0 7/2020
+285.jpg: date : no date found patterns result: no date found
+286.jpg: date : no date found patterns result: no date found
+287.jpg: date : no date found patterns result: no date found
+288.jpg: date : no date found patterns result: no date found
+289.jpg: date : no date found patterns result: no date found
+290.jpg: date : no date found patterns result: no date found
+291.jpg: date : no date found patterns result: no date found
+293.jpg: date : 2021-01-02 00:00:00 patterns result: 01/02/21
+294.jpg: date : 1076-02-20 00:00:00 patterns result: 20 2 1076
+295.jpg: date : no date found patterns result: no date found
+296.jpg: date : no date found patterns result: no date found
+297.jpg: date : 2021-05-11 00:00:00 patterns result: 05/11/2021
+298.jpg: date : 2021-01-02 00:00:00 patterns result: 01/02/21
+299.jpg: date : no date found patterns result: no date found
+301.jpg: date : 00/08/19 patterns result: 00/08/19
+302.jpg: date : no date found patterns result: no date found
+304.jpg: date : no date found patterns result: no date found
+305.jpg: date : no date found patterns result: no date found
+306.jpg: date : 2019-05-30 00:00:00 patterns result: 30.05.19
+307.jpg: date : no date found patterns result: no date found
+308.jpg: date : no date found patterns result: no date found
+309.jpg: date : no date found patterns result: no date found
+311.jpg: date : no date found patterns result: no date found
+312.jpg: date : no date found patterns result: no date found
+313.jpg: date : no date found patterns result: no date found
+314.jpg: date : no date found patterns result: no date found
+316.jpg: date : no date found patterns result: no date found
+317.jpg: date : no date found patterns result: no date found
+318.jpg: date : no date found patterns result: no date found
+319.jpg: date : 2021-10-31 00:00:00 patterns result: 31/10/2021
+320.jpg: date : 2020-12-31 00:00:00 patterns result: 31/12/2020
+321.jpg: date : no date found patterns result: no date found
+323.jpg: date : no date found patterns result: no date found
+324.jpg: date : no date found patterns result: no date found
+325.jpg: date : no date found patterns result: no date found
+327.jpg: date : no date found patterns result: no date found
+328.jpg: date : no date found patterns result: no date found
+329.jpg: date : no date found patterns result: no date found
+330.jpg: date : no date found patterns result: no date found
+331.jpg: date : no date found patterns result: no date found
+332.jpg: date : no date found patterns result: no date found
+350.jpg: date : no date found patterns result: no date found
+351.jpg: date : 2122-04-21 00:00:00 patterns result: 21/04/2122
+352.jpg: date : no date found patterns result: no date found
+354.jpg: date : no date found patterns result: no date found
+355.jpg: date : no date found patterns result: no date found
+356.jpg: date : 2019-01-18 00:00:00 patterns result: 18/01/19
+358.jpg: date : no date found patterns result: no date found
+452.jpg: date : no date found patterns result: no date found
+453.jpg: date : no date found patterns result: no date found
+454.jpg: date : 2020-05-01 00:00:00 patterns result: 05/2020
+455.jpg: date : 59.14.13 patterns result: 59.14.13
+456.jpg: date : no date found patterns result: no date found
+457.jpg: date : no date found patterns result: no date found
+458.jpg: date : no date found patterns result: no date found
+459.jpg: date : no date found patterns result: no date found
+460.jpg: date : no date found patterns result: no date found
+461.jpg: date : no date found patterns result: no date found
+462.jpg: date : no date found patterns result: no date found
+463.jpg: date : no date found patterns result: no date found
+464.jpg: date : no date found patterns result: no date found
+465.jpg: date : 2024-03-26 00:00:00 patterns result: 26-03-2024
+466.jpg: date : no date found patterns result: no date found
+467.jpg: date : no date found patterns result: no date found
+468.jpg: date : 2021-06-25 00:00:00 patterns result: 25/06/21
+469.jpg: date : no date found patterns result: no date found
+470.jpg: date : 2119-10-24 00:00:00 patterns result: 24 10 2119
+471.jpg: date : no date found patterns result: no date found
+472.jpg: date : no date found patterns result: no date found
+473.jpg: date : no date found patterns result: no date found
+474.jpg: date : no date found patterns result: no date found
+475.jpg: date : 2019-12-31 00:00:00 patterns result: 31/12/19
+476.jpg: date : no date found patterns result: no date found
+477.jpg: date : no date found patterns result: no date found
+478.jpg: date : no date found patterns result: no date found
+479.jpg: date : no date found patterns result: no date found
+480.jpg: date : no date found patterns result: no date found
+481.jpg: date : no date found patterns result: no date found
+482.jpg: date : no date found patterns result: no date found
+483.jpg: date : no date found patterns result: no date found
+486.jpg: date : no date found patterns result: no date found
+487.jpg: date : no date found patterns result: no date found
+488.jpg: date : 2019-01-12 00:00:00 patterns result: 01-12-19
+489.jpg: date : no date found patterns result: no date found
+490.jpg: date : no date found patterns result: no date found
+491.jpg: date : no date found patterns result: no date found
+492.jpg: date : no date found patterns result: no date found
+493.jpg: date : 0219-08-17 00:00:00 patterns result: 17/08/219
+494.jpg: date : 2022-02-13 00:00:00 patterns result: 2 13.39
+495.jpg: date : 2020-04-04 00:00:00 patterns result: 04/04/20
+497.jpg: date : 2024-12-31 00:00:00 patterns result: 31/12/2024
+498.jpg: date : no date found patterns result: no date found
+499.jpg: date : no date found patterns result: no date found
+500.jpg: date : no date found patterns result: no date found
+501.jpg: date : no date found patterns result: no date found
+502.jpg: date : no date found patterns result: no date found
+503.jpg: date : no date found patterns result: no date found
+504.jpg: date : no date found patterns result: no date found
+506.jpg: date : no date found patterns result: no date found
+507.jpg: date : no date found patterns result: no date found
+508.jpg: date : no date found patterns result: no date found
+509.jpg: date : no date found patterns result: no date found
+510.jpg: date : 2022-05-09 00:00:00 patterns result: 09.2019
+512.jpg: date : no date found patterns result: no date found
+513.jpg: date : no date found patterns result: no date found
+514.jpg: date : 00.2 65 patterns result: 00.2 65
+515.jpg: date : no date found patterns result: no date found
+516.jpg: date : 2019-10-27 00:00:00 patterns result: 27.10.19
+517.jpg: date : no date found patterns result: no date found
+old_0.jpg: date : no date found patterns result: no date found
+old_1.jpg: date : no date found patterns result: no date found
+old_3.jpg: date : 2021-03-29 00:00:00 patterns result: 29.03.2021
+old_4.jpg: date : no date found patterns result: no date found
+old_5.jpg: date : no date found patterns result: no date found
+old_6.jpg: date : no date found patterns result: no date found
+old_7.jpg: date : 2018-08-19 00:00:00 patterns result: 19 08 2018
+old_10.jpg: date : no date found patterns result: no date found
+old_14.jpg: date : no date found patterns result: no date found
+old_16.jpg: date : no date found patterns result: no date found
+old_17.jpg: date : no date found patterns result: no date found
+old_19.jpg: date : 2018-10-09 00:00:00 patterns result: 10/09/2018
+old_22.jpg: date : no date found patterns result: no date found
+old_23.jpg: date : no date found patterns result: no date found
+old_24.jpg: date : no date found patterns result: no date found
+old_25.jpg: date : no date found patterns result: no date found
+old_26.jpg: date : no date found patterns result: no date found
+old_28.jpg: date : no date found patterns result: no date found
+old_29.jpg: date : no date found patterns result: no date found
+old_30.jpg: date : no date found patterns result: no date found
+old_32.jpg: date : 42/07 289 patterns result: 42/07 289
+old_37.jpg: date : no date found patterns result: no date found
+old_38.jpg: date : no date found patterns result: no date found
+old_39.jpg: date : no date found patterns result: no date found
+old_40.jpg: date : no date found patterns result: no date found
+old_41.jpg: date : no date found patterns result: no date found
+old_42.jpg: date : no date found patterns result: no date found
+old_43.jpg: date : no date found patterns result: no date found
+old_45.jpg: date : 2021-01-08 00:00:00 patterns result: 1/8/21
+old_46.jpg: date : no date found patterns result: no date found
+old_47.jpg: date : no date found patterns result: no date found
+old_48.jpg: date : no date found patterns result: no date found
+old_51.jpg: date : 2020-08-16 00:00:00 patterns result: 16/08/20
+old_52.jpg: date : no date found patterns result: no date found
+old_53.jpg: date : 2019-08-16 00:00:00 patterns result: 16/08/2019
+old_54.jpg: date : 2018-10-07 00:00:00 patterns result: 10 07 2018
+old_56.jpg: date : 2016-09-06 00:00:00 patterns result: 09 06 2016
+old_57.jpg: date : no date found patterns result: no date found
+old_59.jpg: date : no date found patterns result: no date found
+old_60.jpg: date : 2021-03-02 00:00:00 patterns result: 3/02/2021
+old_61.jpg: date : 2018-10-29 00:00:00 patterns result: 29/10/18
+old_62.jpg: date : 2018-10-29 00:00:00 patterns result: 29/10/18
+old_63.jpg: date : no date found patterns result: no date found
+old_65.jpg: date : 2019-01-10 00:00:00 patterns result: 01/10/2019
+old_67.jpg: date : 2020-03-28 00:00:00 patterns result: 28/03/2020
+old_68.jpg: date : no date found patterns result: no date found
+old_69.jpg: date : 2019-08-04 00:00:00 patterns result: 08.04.19
+old_70.jpg: date : no date found patterns result: no date found
+old_71.jpg: date : 1822-07-13 00:00:00 patterns result: 13/07/1822
+old_72.jpg: date : 1822-07-13 00:00:00 patterns result: 13/07/1822
+old_73.jpg: date : no date found patterns result: no date found
+old_74.jpg: date : no date found patterns result: no date found
+old_75.jpg: date : no date found patterns result: no date found
+old_76.jpg: date : no date found patterns result: no date found
+old_77.jpg: date : no date found patterns result: no date found
+old_78.jpg: date : no date found patterns result: no date found
+old_79.jpg: date : 1994-01-13 00:00:00 patterns result: 94 1 13
+old_80.jpg: date : no date found patterns result: no date found
+old_82.jpg: date : 2018-09-19 00:00:00 patterns result: 19.09.2018
+old_83.jpg: date : no date found patterns result: no date found
+old_85.jpg: date : no date found patterns result: no date found
+old_87.jpg: date : no date found patterns result: no date found
+old_88.jpg: date : no date found patterns result: no date found
+old_89.jpg: date : 12/44/2046 patterns result: 12/44/2046
+old_90.jpg: date : no date found patterns result: no date found
+old_91.jpg: date : 2022-05-05 00:00:00 patterns result: 05.2021
+old_92.jpg: date : 2018-04-26 00:00:00 patterns result: 26/04/2018
+old_93.jpg: date : no date found patterns result: no date found
+old_94.jpg: date : 2013-08-22 00:00:00 patterns result: 22/08/13
+old_96.jpg: date : no date found patterns result: no date found
+old_97.jpg: date : no date found patterns result: no date found
+old_98.jpg: date : 2018-08-20 00:00:00 patterns result: 20.08.18
+old_99.jpg: date : no date found patterns result: no date found

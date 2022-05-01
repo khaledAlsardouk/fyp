@@ -14,8 +14,7 @@ def sorted_alphanumeric(data):
     return sorted(data, key=alphanum_key)
 
 
-directory = r'C:\Users\khale\Desktop\fyp\test-STUFF\dataset-dates\training'
-counter = 0
+directory = r'C:\Users\tayeb\Desktop\New folder\training'
 reader = easyocr.Reader(['en'])
 dirlist = sorted_alphanumeric(os.listdir(directory))
 
