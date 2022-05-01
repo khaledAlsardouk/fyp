@@ -4,12 +4,15 @@ import cv2
 from matplotlib import pyplot as plt
 import regex
 import re
+import dateutil.parser as dparser
 import numpy as np
+
 
 def sorted_alphanumeric(data):
     convert = lambda text: int(text) if text.isdigit() else text.lower()
     alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
     return sorted(data, key=alphanum_key)
+
 
 directory = r'C:\Users\khale\Desktop\fyp\test-STUFF\dataset-dates\training'
 counter = 0
@@ -18,8 +21,8 @@ dirlist = sorted_alphanumeric(os.listdir(directory))
 
 for filename in dirlist:
     if filename.endswith(".jpg"):
-        IMAGE_PATH = os.path.join(directory,filename)
-        result = reader.readtext(IMAGE_PATH,decoder='wordbeamsearch',batch_size=50)
+        IMAGE_PATH = os.path.join(directory, filename)
+        result = reader.readtext(IMAGE_PATH, decoder='wordbeamsearch', batch_size=50)
         result1 = []
         result2 = []
         result3 = []
@@ -44,7 +47,7 @@ for filename in dirlist:
             try:
                 final_result = c_set.intersection(b_set).pop()
             except:
-                final_result= 'no date found'
+                final_result = 'no date found'
         if len(result1) > 1:
             a_set = set(result1)
             b_set = set(result2)
@@ -53,13 +56,16 @@ for filename in dirlist:
                 final_result = c_set.intersection(b_set).pop()
             except:
                 final_result = 'no date found'
+
         print(final_result)
-        print(str(final_result))
-        counter = counter + 1
-        file_str = str(filename) + ': ' + str(final_result)
+        try:
+            date = dparser.parse(final_result, fuzzy=True)
+            print(str(date))
+        except:
+            date = final_result
+
+        file_str = str(filename) + ': ' + str(date)
         f = open('results.txt', 'a')
         f.write(file_str)
         f.write('\n')
         f.close()
-
-
