@@ -43,59 +43,45 @@ for filename in dirlist:
         if len(result1) == 0:
             b_set = set(result2)
             c_set = set(result3)
-            try:
-                final_result = c_set.intersection(b_set).pop()
-            except:
-                final_result = 'no date found'
+            if (c_set is not None) and (b_set is not None):
+                try:
+                    final_result = c_set.intersection(b_set).pop()
+                except:
+                    final_result = 'no date found'
+            elif b_set is not None:
+                final_result = b_set
+            elif c_set is not None:
+                final_result = c_set
         if len(result1) > 1:
             a_set = set(result1)
             b_set = set(result2)
             c_set = set(result3)
-            try:
-                final_result = c_set.intersection(b_set).pop()
-            except:
-                final_result = 'no date found'
-
-        if len(result2) == 1:
-            final_result = result2[0]
-
-        if len(result2) == 0:
-            b_set = set(result1)
-            c_set = set(result3)
-            try:
-                final_result = c_set.intersection(b_set).pop()
-            except:
-                final_result = 'no date found'
-
-        if len(result2) > 1:
-            a_set = set(result1)
-            b_set = set(result2)
-            c_set = set(result3)
-            try:
-                final_result = c_set.intersection(b_set).pop()
-            except:
-                final_result = 'no date found'
-
-        if len(result3) == 1:
-            final_result = result3[0]
-
-        if len(result3) == 0:
-            b_set = set(result2)
-            c_set = set(result1)
-            try:
-                final_result = c_set.intersection(b_set).pop()
-            except:
-                final_result = 'no date found'
-
-        if len(result3) > 1:
-            a_set = set(result1)
-            b_set = set(result2)
-            c_set = set(result3)
-            try:
-                final_result = c_set.intersection(b_set).pop()
-            except:
-                final_result = 'no date found'
-        print(final_result)
+            if (c_set is not None) and (b_set is not None) and (a_set is not None):
+                try:
+                    final_result = c_set.intersection(b_set.intersection(a_set)).pop()
+                except:
+                    final_result = 'no date found'
+            elif len(a_set) == 0:
+                try:
+                    final_result = c_set.intersection(b_set).pop()
+                except:
+                    final_result = 'no date found'
+            elif len(b_set) == 0:
+                try:
+                    final_result = c_set.intersection(a_set).pop()
+                except:
+                    final_result = 'no date found'
+            elif len(c_set) == 0:
+                try:
+                    final_result = a_set.intersection(b_set).pop()
+                except:
+                    final_result = 'no date found'
+            elif len(a_set) == 0 and len(b_set) == 0:
+                final_result = c_set
+            elif len(a_set) == 0 and len(c_set) == 0:
+                final_result = b_set
+            elif len(b_set) == 0 and len(c_set) == 0:
+                final_result = a_set
         try:
             date = dparser.parse(final_result, fuzzy=True)
             print(str(date))
@@ -103,7 +89,7 @@ for filename in dirlist:
             date = final_result
 
         file_str = str(filename) + ': date : ' + str(date) + " patterns result: " + str(final_result)
-        f = open('results2.txt', 'a')
+        f = open('results3.txt', 'a')
         f.write(file_str)
         f.write('\n')
         f.close()

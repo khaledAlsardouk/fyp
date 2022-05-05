@@ -27,7 +27,7 @@ def coordinates(result):
     average = 1000000
     for x in result:
         file = open('expiry_date.txt', 'r')
-        if result[x][1] in file.read():
+        if file.read() in result[x][1]:
             exp_string = result[x][1]
             exp_string = exp_string.split(":")[0]
             if is_date(exp_string):
