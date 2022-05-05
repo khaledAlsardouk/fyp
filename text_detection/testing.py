@@ -56,6 +56,45 @@ for filename in dirlist:
             except:
                 final_result = 'no date found'
 
+        if len(result2) == 1:
+            final_result = result2[0]
+
+        if len(result2) == 0:
+            b_set = set(result1)
+            c_set = set(result3)
+            try:
+                final_result = c_set.intersection(b_set).pop()
+            except:
+                final_result = 'no date found'
+
+        if len(result2) > 1:
+            a_set = set(result1)
+            b_set = set(result2)
+            c_set = set(result3)
+            try:
+                final_result = c_set.intersection(b_set).pop()
+            except:
+                final_result = 'no date found'
+
+        if len(result3) == 1:
+            final_result = result3[0]
+
+        if len(result3) == 0:
+            b_set = set(result2)
+            c_set = set(result1)
+            try:
+                final_result = c_set.intersection(b_set).pop()
+            except:
+                final_result = 'no date found'
+
+        if len(result3) > 1:
+            a_set = set(result1)
+            b_set = set(result2)
+            c_set = set(result3)
+            try:
+                final_result = c_set.intersection(b_set).pop()
+            except:
+                final_result = 'no date found'
         print(final_result)
         try:
             date = dparser.parse(final_result, fuzzy=True)
@@ -64,7 +103,7 @@ for filename in dirlist:
             date = final_result
 
         file_str = str(filename) + ': date : ' + str(date) + " patterns result: " + str(final_result)
-        f = open('results.txt', 'a')
+        f = open('results2.txt', 'a')
         f.write(file_str)
         f.write('\n')
         f.close()
