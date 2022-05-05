@@ -1,0 +1,10 @@
+0.jpg: date : 16102020 patterns result: 16102020
+1.jpg: date : 2022-12-31 00:00:00 patterns result: 31 12*22
+2.jpg: date : 2021-04-03 00:00:00 patterns result: 04/03/2021
+4.jpg: date : 2021-01-20 00:00:00 patterns result: 20/01/2021
+5.jpg: date : no date found patterns result: no date found
+6.jpg: date : no date found patterns result: no date found
+7.jpg: date : no date found patterns result: no date found
+8.jpg: date : no date found patterns result: no date found
+9.jpg: date : 2020-06-21 00:00:00 patterns result: 21 06 2020
+10.jpg: date : no date found patterns result: no date found
