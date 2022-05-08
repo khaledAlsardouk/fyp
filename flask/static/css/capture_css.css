@@ -1,0 +1,17 @@
+.center {
+    margin: auto;
+    height: 1000px;
+    width: 50%;
+    border: 3px solid rgb(200, 53, 53);
+    padding: 10px;
+  }
+
+  
+  #video_area {
+    background-color : black;
+    border: 5px solid gray;
+    border-radius: 25px;
+    padding: 20px;
+    height: 500px;
+
+}

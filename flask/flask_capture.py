@@ -9,27 +9,41 @@ import sys
 
 capture=0       #to capture image
 switch=0        #to turn the camera on and off
+barcode = 0     #indicates barcode's turn
 app = Flask(__name__)
 app.secret_key = "secret key"
 url = 'http://192.168.2.237:8080/video'
 camera = cv2.VideoCapture(0)    #cahnge 0 to url for IP web
 
 def generate_frames():      #camera
-    global frame, capture, switch
+    global frame, capture, switch,barcode
     while switch:
 
         ## read the camera frame
         success, frame = camera.read()
         if success:
-            if (capture):
-                capture=0
-                switch = 0
+            if (capture and not barcode):
+                capture = 0
                 now = (datetime.datetime.now()).strftime("%f")  # generate name based on time
-                image_path = './shots/' + now + '.jpg'
-                cv2.imwrite(image_path, frame)
+                image_path = './shots/exp' + now + '.jpg'       #name for exp image
+                switch = 0                                      #turn off switch
+                camera.release()                                #turn off camera
+                cv2.imwrite(image_path, frame)                  #save barcode image
+                barcode = 1                                     #set barcode turn
                 #flash(str(image_path))           #shows the path
                 #print(image_path, file=sys.stderr)
-                flash(td.OCR_TD(image_path))
+                #flask.jsonify("help") #REUTRN EXP HERE HELPP HEREEEEEEEEEEEEEEEEEEEP
+            if (capture and barcode):
+                capture = 0
+                now = (datetime.datetime.now()).strftime("%f")  # generate name based on time
+                image_path = './shots/bar' + now + '.jpg'       #name for barcode image
+                switch = 0                                      #turn off switch
+                camera.release()                                #turn off camera
+                cv2.imwrite(image_path, frame)                  #save barcode image
+                barcode = 0                                     #reset barcode turn
+                #flash(str(image_path))                  #shows the path
+                #print(image_path, file=sys.stderr)
+                #flask.jsonify("help") #Implement BARCODE LATERRRRRRRRRRRRRRRRRRRRRR
 
             try:
                 ret, buffer = cv2.imencode('.jpg', cv2.flip(frame,1))
@@ -53,14 +67,16 @@ def video():
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    global switch
+    global switch, camera
     #success, frame = camera.read()
     if request.method == 'POST':
         if request.form.get('stop') == 'Stop/Start':
             if(switch==0):
                 switch = 1
+                camera = cv2.VideoCapture(0)
             else:
                 switch=0
+                camera.release()
         elif request.form.get('click') == 'Capture':        #capture current frame
             global capture
             #flash('here1')
@@ -68,9 +84,13 @@ def index():
         else:
             pass  # unknown
     elif request.method == 'GET':
-        return render_template('index.html')
+        return render_template('capture.html')
 
-    return render_template("index.html")
+    return render_template("capture.html")
+
+@app.route('/')
+def home():
+    return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
 
 if __name__ == "__main__":
