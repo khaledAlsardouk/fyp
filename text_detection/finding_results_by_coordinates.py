@@ -25,7 +25,9 @@ def is_date(string, fuzzy=False):
 
 def coordinates(result):
     average = 1000000
-    for x in result:
+    x = 0
+    x1 = 0
+    for z in result:
         file = open('expiry_date.txt', 'r')
         if file.read() in result[x][1]:
             exp_string = result[x][1]
@@ -36,18 +38,22 @@ def coordinates(result):
             else:
                 Xb = result[x][0][1][0]
                 Yb = result[x][0][1][1]
-                for x in result:
-                    Xtemp = Xb - result[x][0][1][0]
-                    Ytemp = Yb - result[x][0][1][1]
+                for z1 in result:
+                    Xtemp = Xb - result[x1][0][1][0]
+                    Ytemp = Yb - result[x1][0][1][1]
                     average_temp = (Xtemp + Ytemp)/2
                     if average_temp < average:
                         average = average_temp
                         Xa = Xtemp
                         Ya = Ytemp
-                for x in result:
-                    if ((result[x][0][1][0] == Xa) and (result[x][0][1][1] == Ya)):
+                    x1 = x1 + 1
+                x1 = 0
+                for z2 in result:
+                    if ((result[x1][0][1][0] == Xa) and (result[x][0][1][1] == Ya)):
                         exp_string = parse(result[x][1])
                         return exp_string
+                    x1 = x1 + 1
+    x = x + 1
 
 
 
