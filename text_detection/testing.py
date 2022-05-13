@@ -29,59 +29,50 @@ for filename in dirlist:
 
         for text in result:
             pattern = regex.find_date_true(text[1])
-            if (pattern is not None):
+            if pattern is not None:
                 result1.append(pattern)
             pattern = regex.find_date_test_CMP1(text[1])
-            if (pattern is not None):
+            if pattern is not None:
                 result2.append(pattern)
             pattern = regex.find_date_Improved1(text[1])
-            if (pattern is not None):
+            if pattern is not None:
                 result3.append(pattern)
 
         if len(result1) == 1:
             final_result = result1[0]
-        if len(result1) == 0:
+        elif len(result1) == 0:
             b_set = set(result2)
             c_set = set(result3)
-            if (c_set is not None) and (b_set is not None):
-                try:
-                    final_result = c_set.intersection(b_set).pop()
-                except:
-                    final_result = 'no date found'
-            elif b_set is not None:
-                final_result = b_set
-            elif c_set is not None:
-                final_result = c_set
-        if len(result1) > 1:
+            try:
+                final_result = c_set.intersection(b_set).pop()
+            except:
+                final_result = 'no date found'
+        elif len(result1) > 1:
             a_set = set(result1)
             b_set = set(result2)
             c_set = set(result3)
-            if (c_set is not None) and (b_set is not None) and (a_set is not None):
-                try:
-                    final_result = c_set.intersection(b_set.intersection(a_set)).pop()
-                except:
-                    final_result = 'no date found'
-            elif len(a_set) == 0:
-                try:
-                    final_result = c_set.intersection(b_set).pop()
-                except:
-                    final_result = 'no date found'
-            elif len(b_set) == 0:
-                try:
-                    final_result = c_set.intersection(a_set).pop()
-                except:
-                    final_result = 'no date found'
-            elif len(c_set) == 0:
-                try:
-                    final_result = a_set.intersection(b_set).pop()
-                except:
-                    final_result = 'no date found'
-            elif len(a_set) == 0 and len(b_set) == 0:
-                final_result = c_set
-            elif len(a_set) == 0 and len(c_set) == 0:
-                final_result = b_set
-            elif len(b_set) == 0 and len(c_set) == 0:
-                final_result = a_set
+            try:
+                final_result = c_set.intersection(b_set.intersection(a_set)).pop()
+            except:
+                final_result = 'no date found'
+        if len(result1) == 0 and len(result2) == 0:
+            if result3:
+                final_result = result3[0]
+            else:
+                final_result = 'no date found'
+        elif len(result1) == 0 and len(result3) == 0:
+            if result2:
+                final_result = result2[0]
+            else:
+                final_result = 'no date found'
+        if (final_result) == 'no date found' and (len(result1) == 0 or len(result1) > 1):
+            for text in result2:
+                for text1 in result3:
+                    if (text in text1) or (text1 in text):
+                        if (len(text) > len(text1)):
+                            final_result = text
+                        else:
+                            final_result = text1
         try:
             date = dparser.parse(final_result, fuzzy=True)
             print(str(date))
