@@ -15,13 +15,13 @@ def sorted_alphanumeric(data):
 
 
 directory = r'C:\Users\tayeb\Desktop\New folder\training'
-reader = easyocr.Reader(['en'])
+reader = easyocr.Reader(['en','fr','la'])
 dirlist = sorted_alphanumeric(os.listdir(directory))
 
 for filename in dirlist:
     if filename.endswith(".jpg"):
         IMAGE_PATH = os.path.join(directory, filename)
-        result = reader.readtext(IMAGE_PATH, decoder='wordbeamsearch', batch_size=50)
+        result = reader.readtext(IMAGE_PATH, decoder='wordbeamsearch', batch_size=50,width_ths=12)
         result1 = []
         result2 = []
         result3 = []
@@ -80,7 +80,7 @@ for filename in dirlist:
             date = final_result
 
         file_str = str(filename) + ': date : ' + str(date) + " patterns result: " + str(final_result)
-        f = open('results3.txt', 'a')
+        f = open('final_results.txt', 'a')
         f.write(file_str)
         f.write('\n')
         f.close()

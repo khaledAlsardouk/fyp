@@ -9,7 +9,7 @@ from dateutil.parser import parse
 
 def OCR_TD(IMAGE_PATH):
     reader = easyocr.Reader(['en'], gpu=False)
-    result = reader.readtext(IMAGE_PATH, decoder='greedy', batch_size=50,width_ths=0.8)
+    result = reader.readtext(IMAGE_PATH, decoder='greedy', batch_size=50,width_ths=12)
     return result
 
 

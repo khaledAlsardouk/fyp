@@ -8,7 +8,7 @@ from ordered_set import OrderedSet
 reader = easyocr.Reader(['en'])
 
 IMAGE_PATH = r'C:\Users\tayeb\Desktop\New images\1.jpg'
-result = reader.readtext(IMAGE_PATH,decoder='wordbeamsearch',batch_size=50)
+result = reader.readtext(IMAGE_PATH, decoder='greedy', batch_size=50,width_ths=12)
 print(result)
 
 result1=[]
