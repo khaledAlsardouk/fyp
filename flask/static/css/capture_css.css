@@ -1,17 +1,91 @@
-.center {
+html{
+  font-family: Verdana, sans-serif;
+  background-color: #19B61D ;
+  color: white;
+}
+#body_id {
     margin: auto;
     height: 1000px;
-    width: 50%;
-    border: 3px solid rgb(200, 53, 53);
+    width: 90%;
     padding: 10px;
   }
 
   
   #video_area {
+    margin:auto;
     background-color : black;
     border: 5px solid gray;
     border-radius: 25px;
     padding: 20px;
-    height: 500px;
+    height: 40%;
+    width:40%;
+    margin-top:1%;
 
+}
+
+#video_video{
+  height: 100%;
+  width: 100%;
+  
+}
+
+body {
+  width: 90%
+}
+
+.button1 {
+  margin-right:10%;
+  padding: 16px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #af4c4c;
+  color: white;
+  border-color: white;
+}
+
+.button1:hover {
+
+  background-color: white; 
+  color: #4CAF50; 
+  border: 2px solid #4CAF50;
+}
+
+.button2 {
+  margin:auto;
+  padding: 16px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #af4c4c;
+  color: white;
+  border-color: white;
+}
+
+.button2:hover {
+  background-color: white; 
+  color: #4CAF50; 
+  border: 2px solid #4CAF50;
+}
+
+#from_buttons{
+  margin:auto;
+  border:5px;
+  text-align: center;
+
+}
+
+#resultsParent{
+  margin-top:1%;
+  color:#4CAF50;
+  background-color:white;
+  border-radius:10px;
+  padding:2%;
 }
