@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
 
 class Inventory(db.Model):
-    __tablename__ = "inventory"
+    __tablename__ = "inventory"             #to be user name using cookie or login manager
     id = db.Column(db.Integer, primary_key=True)
     Item_name = db.Column(db.String(255), nullable=False)
     Expiry = db.Column(db.DateTime, nullable=False)
@@ -32,18 +32,16 @@ def create_database(app):
         db.create_all(app=app)
         print('Created Database!')
 
-
+@app.before_first_request
 def GetALLItem():
     items = Inventory.query.all()
     for item in items:
-        data.append([item.Item_name,(item.Expiry).date(),(item.notfication_date).date(),item.Category])
+        data.append([item.Item_name, item.Expiry.date(), item.notfication_date.date(), item.Category])
     
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     create_database(app)
-    GetALLItem()
     return render_template("helloworld.html",headings=heading,datas=data)
 
 
