@@ -1,0 +1,43 @@
+{% extends 'base_sidebar.html'%}
+  {% block content  %}
+<body onload="flashMessage()">
+  <script>
+    function flashMessage() {
+      if ("{{ flash_message }}" == "True") {
+        alert("{{ Message }}");
+      }
+    }
+  </script>
+
+  <h1>Scan your Item!</h1>
+  <h1>{{ Date }}</h1>
+  <form method=post enctype=multipart/form-data>
+    <input type="submit" value="Stop/Start" name="stop"  class="button1"/>
+    <input type="submit" value="Capture" name="click"  class="button2"/>
+  </form>
+
+  <div id = "video_area">
+	<img  src="{{ url_for('video') }}" id = "video_video">
+    </div> <!--end video div-->
+
+</div>
+
+  <div id="resultsParent">
+            <table>
+           <tr>
+               {%for header in headings %}
+               <th>{{header}}</th>
+               {% endfor %}
+           </tr>
+           {%for row  in datas %}
+            <tr>
+              {% for cell in row %}
+                <td>{{cell}}</td>
+              {% endfor %}
+            </tr>
+           {% endfor %}
+       </table>
+    </div>
+</body>
+
+{% endblock  %}
