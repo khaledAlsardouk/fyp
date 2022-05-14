@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Login</title>
-    </head>
+{% extends "base.html" %} {% block title %}Login{% endblock %}
     <body>
+        {%block content%}
         <h1>Login</h1>
         <div>
-            <form method="post" action="/">
+            <form method="POST">
                 <label>Email:
                 <input type="email" name="email" value="" placeholder="Email@email.com"/>
                 </label>
                 <label>Password
-                <input type="password" name="password" value="" placeholder="password"/>
+                <input type="password" name="passwords" value="" placeholder="password"/>
                 </label>
-                <input type="submit" name="submit"/>
+                <input type="submit" name="submit2"/>
             </form>
         </div>
+        {%endblock%}
     </body>
 </html>
