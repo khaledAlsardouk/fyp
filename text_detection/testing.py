@@ -80,7 +80,7 @@ for filename in dirlist:
             date = final_result
 
         file_str = str(filename) + ': date : ' + str(date) + " patterns result: " + str(final_result)
-        f = open('final_results.txt', 'a')
+        f = open('final_results_validation.txt', 'a')
         f.write(file_str)
         f.write('\n')
         f.close()

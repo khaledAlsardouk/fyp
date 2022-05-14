@@ -11,7 +11,7 @@ from ordered_set import OrderedSet
 
 reader = easyocr.Reader(['en'])
 
-IMAGE_PATH = r'C:\Users\tayeb\Desktop\New images\1.jpg'
+IMAGE_PATH = r'C:\Users\tayeb\Desktop\New folder\validation\384.jpg'
 result = reader.readtext(IMAGE_PATH, decoder='wordbeamsearch', batch_size=50,width_ths=12)
 result1 = []
 result2 = []
