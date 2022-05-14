@@ -13,19 +13,27 @@
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/capture_css.css') }}">
     </head>
 
+
+
+
   <body id = "body_id" class = "center">
     <h1>Start Camera then Capture Exp. Date! we we</h1>
-    <h2></h2>
-    <div>
-	<form method="post" action="/">
-		<input type="submit" value="Stop/Start" name="stop" />
-		<input type="submit" value="Capture" name="click"/>
+    <p id = instructions>   {{barorexp}}    </p>
+    <div id ="from_buttons">
+
+	<form method="post" action="/" >
+		<input type="submit" value="Stop/Start" name="stop"  class="button1"/>
+		<input type="submit" value="Capture" name="click"  class="button2"/>
 	</form>
+    </div> <!--end from div-->
+
     <div id = "video_area"> 
-	<img  src="{{ url_for('video') }}" >
+	<img  src="{{ url_for('video') }}" id = "video_video">
+    </div> <!--end video div-->
+    
+    <div id="resultsParent">
+    <p id="results"> Results: </p>
     </div>
-    </div>
-            
     </body>
 
 
