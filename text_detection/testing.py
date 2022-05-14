@@ -6,7 +6,7 @@ import regex
 import re
 import dateutil.parser as dparser
 import numpy as np
-
+from ordered_set import OrderedSet
 
 def sorted_alphanumeric(data):
     convert = lambda text: int(text) if text.isdigit() else text.lower()
@@ -14,7 +14,7 @@ def sorted_alphanumeric(data):
     return sorted(data, key=alphanum_key)
 
 
-directory = r'C:\Users\tayeb\Desktop\New folder\training'
+directory = r'C:\Users\tayeb\Desktop\New folder\validation'
 reader = easyocr.Reader(['en','fr','la'])
 dirlist = sorted_alphanumeric(os.listdir(directory))
 
@@ -41,16 +41,16 @@ for filename in dirlist:
         if len(result1) == 1:
             final_result = result1[0]
         elif len(result1) == 0:
-            b_set = set(result2)
-            c_set = set(result3)
+            b_set = OrderedSet(result2)
+            c_set = OrderedSet(result3)
             try:
                 final_result = c_set.intersection(b_set).pop()
             except:
                 final_result = 'no date found'
         elif len(result1) > 1:
-            a_set = set(result1)
-            b_set = set(result2)
-            c_set = set(result3)
+            a_set = OrderedSet(result1)
+            b_set = OrderedSet(result2)
+            c_set = OrderedSet(result3)
             try:
                 final_result = c_set.intersection(b_set.intersection(a_set)).pop()
             except:
