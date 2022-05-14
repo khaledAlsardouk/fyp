@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, flash, redirect
 from flask_login import mixins
 import datetime
 import requests
-
+from datetime import date
 app = Flask(__name__)
 
 app.secret_key = "blue red green k"
@@ -39,14 +39,35 @@ def GetALLItem():
     for item in items:
         data.append([item.Item_name,(item.Expiry).date(),(item.notfication_date).date(),item.Category])
 
-def Get_Recipe():
+def Get_Time(expiry,current_date):
+    expiry = datetime.strptime(expiry, "%Y-%m-%d")
+    current_date = datetime.strptime(current_date, "%Y-%m-%d")
+    if expiry - current_date > 7:
+        return False
+    else: return True
+
+def Get_Recipe_From_Date():
     url = "https://edamam-recipe-search.p.rapidapi.com/search"
     ingredients = ''
     items = Inventory.query.all()
     for item in items:
-        if item.Category == "Food":
+        if item.Category == "Food" and (Get_Time(item.Expiry,date.today) == True):
             ingredients = ingredients + item.Item_name + ", "
             print(ingredients)
+    querystring = {"q": ingredients}
+
+    headers = {
+        "X-RapidAPI-Host": "edamam-recipe-search.p.rapidapi.com",
+        "X-RapidAPI-Key": "c82513b996msh91aa04854473575p15db2ajsn8d757b1e5a57"
+    }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    print(response.text)
+
+def Get_Recipe_From_User():
+    url = "https://edamam-recipe-search.p.rapidapi.com/search"
+    ingredients = input("Please enter your desired ingredient(s)")
     querystring = {"q": ingredients}
 
     headers = {
@@ -62,7 +83,8 @@ def Get_Recipe():
 def index():
     create_database(app)
     GetALLItem()
-    Get_Recipe()
+    Get_Recipe_From_Date()
+    Get_Recipe_From_User()
     return render_template("helloworld.html",headings=heading,datas=data)
 
 
