@@ -1,11 +1,34 @@
 from flask import Flask, render_template, Response, request, flash
 import cv2
 import datetime, time
-import os
+from flask_sqlalchemy import SQLAlchemy
 import text_detection_1 as td
+import asyncio
+from os import path
 
 global capture, switch, frame, BarOrExp
-import sys
+
+
+app = Flask(__name__)
+app.secret_key = "blue red green k"
+db = SQLAlchemy(app)
+DB_NAME = "Items.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+
+
+def create_database(app):
+    if not path.exists('/' + DB_NAME):
+        db.create_all(app=app)
+        print('Created Database!')
+
+
+class Item(db.Model):
+    __tablename__ = "Items"
+    id = db.Column(db.Integer, primary_key=True)
+    Barcode = db.Column(db.String(255), nullable=False)
+    Item_name = db.Column(db.String(255), nullable=False)
+    Category = db.Column(db.String(255), nullable=False)
+
 
 date = "HI"
 heading = ("Item name", "Expiry", "notfication date", "Category")
@@ -14,7 +37,16 @@ switch = 0  # to turn the camera on and off
 barcode = 0  # indicates barcode's turn
 app = Flask(__name__)
 app.secret_key = "secret key"
-url = 'http://192.168.1.103:8080/video'
+# url = 'http://192.168.1.103:8080/video'
+url = 1
+data = []
+
+
+def getItemFromDb(itemID):
+    global date
+    items = Item.query.filter_by(Barcode=itemID).first()
+    print(items)
+    data.append([items.Item_name, date, items.Category])
 
 
 def popups1():
@@ -33,9 +65,9 @@ def capture_exp_images():
     image_path = './shots/exp' + now + '.jpg'  # name for exp image
     switch = 0  # turn off switch
     camera.release()  # turn off camera
-    cv2.imwrite(image_path, frame)  # save barcode image
-    date = td.OCR_TD(image_path)
+    cv2.imwrite(image_path, frame)  # save barcode image            #exp479403.jpg
     barcode = 1
+    date = td.OCR_TD(image_path)
 
 
 def capture_bar_images():
@@ -47,6 +79,8 @@ def capture_bar_images():
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image
     barcode = 0  # reset barcode turn
+    extracted_Num = td.extract_barcode(image_path)
+    getItemFromDb(extracted_Num)
 
 
 @app.route('/video')
@@ -79,6 +113,7 @@ def generate_frames():  # camera
 @app.route("/", methods=['GET', 'POST'])
 def index():
     global switch, camera
+    create_database(app)
     if request.method == 'POST':
         if request.form.get('stop') == 'Stop/Start':
             if switch == 0:
@@ -95,8 +130,9 @@ def index():
             pass  # unknown
     elif request.method == 'GET':
         return render_template('ExpOrBar.html', flash_message="False")
-    return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date)
+    return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date,datas=data)
 
 
 if __name__ == "__main__":
+    db.init_app(app)
     app.run(debug=True)
