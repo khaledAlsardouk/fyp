@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Upload new File</title>
-</head>
+{% extends 'base_sidebar.html'%}
+  {% block content  %}
 <body onload="flashMessage()">
   <script>
     function flashMessage() {
@@ -43,4 +39,5 @@
        </table>
     </div>
 </body>
-</html>
+
+{% endblock  %}
