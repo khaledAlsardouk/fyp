@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
   {% block content  %}
-<body onload="flashMessage()">
+<body  onload="flashMessage()">
   <script>
     function flashMessage() {
       if ("{{ flash_message }}" == "True") {
@@ -9,13 +9,15 @@
     }
   </script>
 
-  <h1>Scan your Item!</h1>
+  <h1 style="text-align:center; padding-bottom: 1%;" >Scan your Item!</h1>
   <h1>{{ Date }}</h1>
+  <div id="from_buttons">
   <form method=post enctype=multipart/form-data>
-    <input type="submit" value="Stop/Start" name="stop"  class="button1"/>
-    <input type="submit" value="Capture" name="click"  class="button2"/>
+    <input type="submit" value="Stop/Start" name="stop"  class="button1 btn btn-primary btn-lg "/>
+    <input type="submit" value="Capture" name="click"  class="button2 btn btn-primary btn-lg"/>
+    <input type="submit" value="Done" name="done"  class="button2 btn btn-primary btn-lg"/>
   </form>
-
+  </div>
   <div id = "video_area">
 	<img  src="{{ url_for('video') }}" id = "video_video">
     </div> <!--end video div-->
@@ -23,7 +25,7 @@
 </div>
 
   <div id="resultsParent">
-            <table>
+          <table>
            <tr>
                {%for header in headings %}
                <th>{{header}}</th>

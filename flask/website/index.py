@@ -2,7 +2,7 @@ from flask import Flask, render_template, Response, request, flash
 import cv2
 import datetime, time
 import os
-import text_detection_1 as td
+#import text_detection_1 as td
 
 global capture, switch, frame, BarOrExp
 import sys
@@ -22,8 +22,8 @@ switch = 0  # to turn the camera on and off
 barcode = 0  # indicates barcode's turn
 app = Flask(__name__)
 app.secret_key = "secret key"
-url = 'http://192.168.1.103:8080/video'
-
+#url = 'http://192.168.1.103:8080/video'
+url = 0
 
 def popups1():
     global BarOrExp, barcode
@@ -150,7 +150,7 @@ def inventory():
 ############################################ HOME ##################################################
 @app.route("/")
 def home():
-    return render_template("base_sidebar.html")
+    return render_template("base.html")
 ############################################ HOME END ##############################################
 
 
