@@ -147,21 +147,26 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="{{url_for('home')}}" class="nav-link active" aria-current="page">
+        <a href="/home" class="nav-link active" aria-current="page">
           <svg class="bi pe-none me-2" width="30" height="25"><use xlink:href="#home"/></svg>
           Home
         </a>
       </li>
+      
+      
       <li>
-        <a href="{{url_for('scanning')}}" class="nav-link link-dark">
-          <img src="{{url_for('static',filename = 'images/barcode-scan.png')}}" width="30" height="30" class="bi pe-none me-2">
-          Scan
+        <a href="Sign-Up" class="nav-link link-dark">
+          Sign-up
         </a>
       </li>
       <li>
-        <a href="{{url_for('inventory')}}" class="nav-link link-dark">
-          <img src="{{url_for('static',filename = 'images/inspection.png')}}" width="30" height="30" class="bi pe-none me-2">
-          Inventory
+        <a href="/login" class="nav-link link-dark">
+          login
+        </a>
+      </li>
+      <li>
+        <a href="/logout" class="nav-link link-dark">
+          Logout
         </a>
       </li>
       <li>
@@ -181,7 +186,7 @@
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="{{url_for('static',filename = 'images/user-profile.png')}}" width="30" height="30" class="bi pe-none me-2">
-        <strong>User_Name</strong>
+        <strong>username</strong>
       </a>
       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
         <li><a class="dropdown-item" href="#">Add new item</a></li>

@@ -13,12 +13,13 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('passwords')
-
+       
         user = User.query.filter_by(Email=email).first()
         if user:
             if check_password_hash(user.Password, password):
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
+                
                 return redirect(url_for('views.home'))
             else:
                 flash('Incorrect password, try again.', category='error')
