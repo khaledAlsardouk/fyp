@@ -89,7 +89,7 @@ def generate_frames():  # camera
             break
 
 
-@Capture1.route("/Capture", methods=['GET', 'POST'])
+@Capture1.route("/Capture1", methods=['GET', 'POST'])
 def Capture():
     global switch, camera
 

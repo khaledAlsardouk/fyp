@@ -8,7 +8,6 @@ DB_NAME = "Users.db"
 
 
 def create_app():
-
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
@@ -18,11 +17,12 @@ def create_app():
     from .auth import auth
     from .CaptureDateorExp import Capture1
     from .inventory import Inventory1
+    from .models import User, Item, Inventory
+
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-    app.register_blueprint(Capture1,url_prefix='/')
-    app.register_blueprint(Inventory1,url_prefix='/')
-    from .models import User,Item
+    app.register_blueprint(Capture1, url_prefix='/')
+    app.register_blueprint(Inventory1, url_prefix='/')
 
     create_database(app)
 
