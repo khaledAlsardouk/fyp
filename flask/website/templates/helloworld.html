@@ -2,20 +2,22 @@
   {% block content  %}
 
     <body>
-       <table>
-           <tr>
+      <div class = container>
+        <table class="table table-hover">
+           <tr >
                {%for header in headings %}
-               <th>{{header}}</th>
+               <th scope="col">{{header}}</th>
                {% endfor %}
            </tr>
            {%for row  in datas %}
-            <tr>
+            <tr scope="row">
               {% for cell in row %}
                 <td>{{cell}}</td>
               {% endfor %}
             </tr>
            {% endfor %}
        </table>
+      </div>
     </body>
     
   {% endblock  %}
