@@ -9,11 +9,11 @@
     }
   </script>
 
-  <h1 style="text-align:center; padding-bottom: 1%;" >Scan your Item!</h1>
-  <h1>{{ Date }}</h1>
+  <h1 style="text-align:center;" >Scan your Item!</h1>
+  <h1 style="text-align:center;">{{ Date }}</h1>
   <div id="from_buttons">
   <form method=post enctype=multipart/form-data>
-    <input type="submit" value="Stop/Start" name="stop"  class="button1 btn btn-primary btn-lg "/>
+    <input type="submit" value="Stop/Start" name="stop"  id="button1P" class="button1 btn btn-primary btn-lg "/>
     <input type="submit" value="Capture" name="click"  class="button2 btn btn-primary btn-lg"/>
     <input type="submit" value="Done" name="done"  class="button2 btn btn-primary btn-lg"/>
   </form>
@@ -24,15 +24,15 @@
 
 </div>
 
-  <div id="resultsParent">
-          <table>
+<div class = "container results">
+          <table class="table table-dark table-hover">
            <tr>
                {%for header in headings %}
-               <th>{{header}}</th>
+               <th scope="col">{{header}}</th>
                {% endfor %}
            </tr>
            {%for row  in datas %}
-            <tr>
+            <tr scope="row">
               {% for cell in row %}
                 <td>{{cell}}</td>
               {% endfor %}
