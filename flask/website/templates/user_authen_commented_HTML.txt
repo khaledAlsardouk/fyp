@@ -1,0 +1,13 @@
+              <!--
+              {% if user.is_authenticated %}
+              <li><a class="dropdown-item" id="home" href="/">Home</a></li>
+              <li><a class="dropdown-item" href="#">Scan</a></li>
+              <li><a class="dropdown-item" href="#">Inventory</a></li>
+              <li><a class="dropdown-item" href="#">Find Recipes</a></li>
+              <li><a class="dropdown-item" id="logout" href="/logout">Logout</a></li>
+              {% else %}
+              <li><a class="dropdown-item" id="login" href="/Login">Login</a></li>
+              <li><a class="dropdown-item" id="signUp" href="/Sign-Up">Sign Up</a></li>
+              {% endif %}
+            -->
+
