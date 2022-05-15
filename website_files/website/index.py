@@ -1,15 +1,14 @@
-from flask import Flask, render_template, Response, request, flash
+from flask import Flask, render_template, Response, request, flash,redirect
 import cv2
 import datetime, time
 import os
-import text_detection_1 as td
+import DateandBarcode as td
 
 global capture, switch, frame, BarOrExp
 import sys
 from os import path
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, request, flash, redirect
 
 import datetime
 
@@ -110,7 +109,7 @@ def scanning():
 app.secret_key = "blue red green k"
 
 db = SQLAlchemy(app)
-DB_NAME = "test.db"
+DB_NAME = "Inventory.db"
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
 

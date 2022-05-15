@@ -1,20 +1,16 @@
-from flask import Flask, render_template, Response, request, flash,Blueprint
+from flask import Flask, render_template, Response, request, flash, Blueprint
 import cv2
 import datetime, time
 from flask_sqlalchemy import SQLAlchemy
-from.models import Item
-import text_detection_1 as td
-import asyncio
-from os import path
+from .models import Item
+from .DateandBarcode import OCR_TD,extract_barcode
 
 global capture, switch, frame, BarOrExp
-Capture1=Blueprint("Capture1",__name__)
-
-
+Capture1 = Blueprint("Capture1", __name__)
 
 DB_NAME = "Items.db"
 date = "HI"
-heading = ("Item name", "Expiry", "notfication date", "Category")
+heading = ("Item name", "Expiry", "notification date", "Category")
 capture = 0  # to capture image
 switch = 0  # to turn the camera on and off
 barcode = 0  # indicates barcode's turn
@@ -50,7 +46,7 @@ def capture_exp_images():
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image            #exp479403.jpg
     barcode = 1
-    date = td.OCR_TD(image_path)
+    date = OCR_TD(image_path)
 
 
 def capture_bar_images():
@@ -62,7 +58,7 @@ def capture_bar_images():
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image
     barcode = 0  # reset barcode turn
-    extracted_Num = td.extract_barcode(image_path)
+    extracted_Num = extract_barcode(image_path)
     getItemFromDb(extracted_Num)
 
 
@@ -96,7 +92,7 @@ def generate_frames():  # camera
 @Capture1.route("/Capture", methods=['GET', 'POST'])
 def Capture():
     global switch, camera
-   
+
     if request.method == 'POST':
         if request.form.get('stop') == 'Stop/Start':
             if switch == 0:
@@ -114,5 +110,3 @@ def Capture():
     elif request.method == 'GET':
         return render_template('ExpOrBar.html', flash_message="False")
     return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date,datas=data)
-
-
