@@ -1,12 +1,35 @@
 import easyocr
-import os
 import cv2
-from matplotlib import pyplot as plt
-import regex
 import re
 import dateutil.parser as dparser
-import numpy as np
 from pyzbar.pyzbar import decode
+
+
+def find_date_true(text):
+    try:
+        match = re.search(r'\d{1,2}[/. -]\d{1,2}[/. -]\d{2,4}', text)
+        return match.group()
+    except:
+        return None
+
+
+def find_date_test_CMP1(text):
+    try:
+        match = re.search(r'(([\d]{1})|([\d]{2}))(/|-| |.)(([\d]{1})|([\d]{2}))(/|-| |.)(([\d]{4})|([\d]{2}))', text)
+        return match.group()
+    except:
+        return None
+
+
+def find_date_Improved1(text):
+    try:
+        match = re.search("((([3][0-1])|([1-2][0-9])|([0][1-9]))(/|-| |.))?((([0][1-9])|[1][0-2])|("
+                          "JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)|("
+                          "jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))(/|-| |.)(([2][0][1-9][0-9])|([1-9]["
+                          "0-9]))", text)
+        return match.group()
+    except:
+        return None
 
 
 def OCR_TD(IMAGE_PATH):
@@ -18,13 +41,13 @@ def OCR_TD(IMAGE_PATH):
     final_result = ''
 
     for text in result:
-        pattern = regex.find_date_true(text[1])
+        pattern = find_date_true(text[1])
         if pattern is not None:
             result1.append(pattern)
-        pattern = regex.find_date_test_CMP1(text[1])
+        pattern = find_date_test_CMP1(text[1])
         if pattern is not None:
             result2.append(pattern)
-        pattern = regex.find_date_Improved1(text[1])
+        pattern = find_date_Improved1(text[1])
         if pattern is not None:
             result3.append(pattern)
 
@@ -69,7 +92,6 @@ def OCR_TD(IMAGE_PATH):
     except:
         date = final_result
     return str(date)
-
 
 
 def extract_barcode(IMAGE_PATH):
