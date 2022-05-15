@@ -1,8 +1,8 @@
 from os import path
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin, current_user
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request, flash, redirect
-from flask_login import mixins
 import datetime
 
 app = Flask(__name__)
@@ -14,8 +14,8 @@ DB_NAME = "test.db"
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
 
-class Inventory(db.Model):
-    __tablename__ = "inventory"             #to be user name using cookie or login manager
+class Inventory(db.Model,UserMixin):
+    __tablename__ = current_user             #to be user name using cookie or login manager
     id = db.Column(db.Integer, primary_key=True)
     Item_name = db.Column(db.String(255), nullable=False)
     Expiry = db.Column(db.DateTime, nullable=False)

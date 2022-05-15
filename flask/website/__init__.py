@@ -15,11 +15,11 @@ def create_app():
 
     from .views import views
     from .auth import auth
-
+    from .CaptureDateorExp import Capture1
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-
-    from .models import User
+    app.register_blueprint(Capture1,url_prefix='/')
+    from .models import User,Item
 
     create_database(app)
 

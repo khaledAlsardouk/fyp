@@ -1,35 +1,20 @@
 from flask import Flask, render_template, Response, request, flash
 import cv2
 import datetime, time
-from flask_sqlalchemy import SQLAlchemy
+import os
 import text_detection_1 as td
-import asyncio
-from os import path
 
 global capture, switch, frame, BarOrExp
+import sys
+from os import path
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request, flash, redirect
+
+import datetime
 
 
-app = Flask(__name__)
-app.secret_key = "blue red green k"
-db = SQLAlchemy(app)
-DB_NAME = "Items.db"
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-
-
-def create_database(app):
-    if not path.exists('/' + DB_NAME):
-        db.create_all(app=app)
-        print('Created Database!')
-
-
-class Item(db.Model):
-    __tablename__ = "Items"
-    id = db.Column(db.Integer, primary_key=True)
-    Barcode = db.Column(db.String(255), nullable=False)
-    Item_name = db.Column(db.String(255), nullable=False)
-    Category = db.Column(db.String(255), nullable=False)
-
-
+################################################## CDE #########################################
 date = "HI"
 heading = ("Item name", "Expiry", "notfication date", "Category")
 capture = 0  # to capture image
@@ -37,16 +22,7 @@ switch = 0  # to turn the camera on and off
 barcode = 0  # indicates barcode's turn
 app = Flask(__name__)
 app.secret_key = "secret key"
-# url = 'http://192.168.1.103:8080/video'
-url = 1
-data = []
-
-
-def getItemFromDb(itemID):
-    global date
-    items = Item.query.filter_by(Barcode=itemID).first()
-    print(items)
-    data.append([items.Item_name, date, items.Category])
+url = 'http://192.168.1.103:8080/video'
 
 
 def popups1():
@@ -65,9 +41,9 @@ def capture_exp_images():
     image_path = './shots/exp' + now + '.jpg'  # name for exp image
     switch = 0  # turn off switch
     camera.release()  # turn off camera
-    cv2.imwrite(image_path, frame)  # save barcode image            #exp479403.jpg
-    barcode = 1
+    cv2.imwrite(image_path, frame)  # save barcode image
     date = td.OCR_TD(image_path)
+    barcode = 1
 
 
 def capture_bar_images():
@@ -79,8 +55,6 @@ def capture_bar_images():
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image
     barcode = 0  # reset barcode turn
-    extracted_Num = td.extract_barcode(image_path)
-    getItemFromDb(extracted_Num)
 
 
 @app.route('/video')
@@ -110,10 +84,9 @@ def generate_frames():  # camera
             break
 
 
-@app.route("/", methods=['GET', 'POST'])
-def index():
+@app.route("/scanning", methods=['GET', 'POST'])
+def scanning():
     global switch, camera
-    create_database(app)
     if request.method == 'POST':
         if request.form.get('stop') == 'Stop/Start':
             if switch == 0:
@@ -130,9 +103,56 @@ def index():
             pass  # unknown
     elif request.method == 'GET':
         return render_template('ExpOrBar.html', flash_message="False")
-    return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date,datas=data)
+    return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date)
+################################################## CDE END #########################################
+
+################################################## inventory #########################################
+app.secret_key = "blue red green k"
+
+db = SQLAlchemy(app)
+DB_NAME = "test.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+
+
+class Inventory(db.Model):
+    __tablename__ = "inventory"  # to be user name using cookie or login manager
+    id = db.Column(db.Integer, primary_key=True)
+    Item_name = db.Column(db.String(255), nullable=False)
+    Expiry = db.Column(db.DateTime, nullable=False)
+    notfication_date = db.Column(db.DateTime, nullable=False, unique=False)
+    Category = db.Column(db.String(255), nullable=False)
+
+
+heading = ("Item name", "Expiry", "notfication date", "Category")
+data = []
+
+
+def create_database(app):
+    if not path.exists('/' + DB_NAME):
+        db.create_all(app=app)
+        print('Created Database!')
+
+
+@app.before_first_request
+def GetALLItem():
+    items = Inventory.query.all()
+    for item in items:
+        data.append([item.Item_name, item.Expiry.date(), item.notfication_date.date(), item.Category])
+
+
+@app.route('/inventory', methods=['GET', 'POST'])
+def inventory():
+    create_database(app)
+    return render_template("helloworld.html", headings=heading, datas=data)
+
+################################################## inventory END #########################################
+
+############################################ HOME ##################################################
+@app.route("/")
+def home():
+    return render_template("base_sidebar.html")
+############################################ HOME END ##############################################
 
 
 if __name__ == "__main__":
-    db.init_app(app)
     app.run(debug=True)
