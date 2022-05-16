@@ -17,7 +17,7 @@ def create_app():
     from .auth import auth
     from .CaptureDateorExp import Capture1
     from .inventory import Inventory1
-    from .models import User, Item, Inventory
+    from .models import User,Item, Inventory
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
