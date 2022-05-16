@@ -8,19 +8,32 @@ from .models import Inventory
 
 DB_NAME = "Inventory.db"
 Inventory1 = Blueprint("Inventory", __name__)
-data = []
 
 choice = 0
 
 heading = ("Item name", "Expiry", "notfication date", "Category")
+data = []
+
+
+def GetALLItem():
+    items = Inventory.query.all()
+    for item in items:
+        data.append([str(item.id), item.Item_name, (item.Expiry).date(), (item.notfication_date).date(), item.Category])
 
 
 @Inventory1.route('/inventory', methods=['GET', 'POST'])
 def inventory():
-    global choice
+    global choice,data
+    data = []
     if choice == 0:
-        items = Inventory.query.all()
-        for item in items:
-            data.append([item.Item_name, item.Expiry.date(), item.notfication_date.date(), item.Category])
+        GetALLItem()
         choice = 1
-    return render_template("helloworld.html", headings=heading, datas=data)
+    if request.method == 'POST':
+        data = []
+        print(request.form['clicked_btn'])
+        delete = Inventory.query.filter_by(id=request.form['clicked_btn']).first()
+        Inventory.session.delete(delete)
+        Inventory.session.commit()
+        GetALLItem()
+        return render_template("Inventory.html", headings=heading, datas=data)
+    return render_template("Inventory.html", headings=heading, datas=data)

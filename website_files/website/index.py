@@ -143,7 +143,7 @@ def GetALLItem():
 @app.route('/inventory', methods=['GET', 'POST'])
 def inventory():
     create_database(app)
-    return render_template("helloworld.html", headings=heading, datas=data)
+    return render_template("Inventory.html", headings=heading, datas=data)
 
 ################################################## inventory END #########################################
 
