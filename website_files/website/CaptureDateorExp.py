@@ -16,8 +16,7 @@ switch = 0  # to turn the camera on and off
 barcode = 0  # indicates barcode's turn
 app = Flask(__name__)
 app.secret_key = "secret key"
-# url = 'http://192.168.1.103:8080/video'
-url = 1
+url = 'http://192.168.1.103:8080/video'
 data = []
 
 
@@ -62,7 +61,7 @@ def capture_bar_images():
     getItemFromDb(extracted_Num)
 
 
-@Capture1.route('/video')
+@Capture1.route('/Capture1/video')
 def video():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
