@@ -11,7 +11,6 @@
            </tr>
            {%for row  in datas %}
             <tr scope="row">
-              {% for cell in row %}
                 <tr>
                 <td>{{row[1]}}</td>
                 <td>{{row[2]}}</td>
@@ -22,7 +21,6 @@
                   <button type="submit" name="clicked_btn" value={{row[0]}}>delete</button>
               </form>
               </td>
-              {% endfor %}
             </tr>
            {% endfor %}
        </table>
