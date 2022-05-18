@@ -1,4 +1,6 @@
 from binascii import Incomplete
+
+from sqlalchemy import true
 from . import db
 from flask_login import UserMixin,current_user
 from sqlalchemy.sql import func
@@ -23,6 +25,6 @@ class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Item_name = db.Column(db.String(255), nullable=False)
     Expiry = db.Column(db.String(255),nullable=False)
-    notfication_date = db.Column(db.String(255), nullable=False, unique=False)
+    notfication_date = db.Column(db.String(255), nullable=true, unique=False)
     Category = db.Column(db.String(255), nullable=False)
     user_id=db.Column(db.Integer,db.ForeignKey('user.id'))

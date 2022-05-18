@@ -1,7 +1,12 @@
+from unicodedata import category
 from flask import Flask, render_template, Response, request, flash, Blueprint
 import cv2
 import datetime, time
+from flask_login import current_user, login_required
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import null
+from .import db
+from website_files.website.index import Inventory
 from .models import Item
 from .DateandBarcode import OCR_TD,extract_barcode
 
@@ -25,8 +30,9 @@ def getItemFromDb(itemID):
     items = Item.query.filter_by(Barcode=itemID).first()
     print(items)
     data.append([items.Item_name, date, items.Category])
-
-
+    new_item=Inventory(item_name=items.Item_name,Expiry=date,notification_date=null,Category=items.Category,user_id=current_user.id)
+    db.session.add(new_item)
+    db.session.commit()
 def popups1():
     global BarOrExp, barcode
     if barcode == 1:
@@ -62,6 +68,7 @@ def capture_bar_images():
 
 
 @Capture1.route('/Capture1/video')
+@login_required
 def video():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
