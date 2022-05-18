@@ -5,34 +5,38 @@ import datetime, time
 from flask_login import current_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import null
-from .import db
+from . import db
 from website_files.website.index import Inventory
 from .models import Item
-from .DateandBarcode import OCR_TD,extract_barcode
+from .DateandBarcode import OCR_TD, extract_barcode
 
 global capture, switch, frame, BarOrExp
 Capture1 = Blueprint("Capture1", __name__)
 
-DB_NAME = "Items.db"
 date = "HI"
 heading = ("Item name", "Expiry", "notification date", "Category")
 capture = 0  # to capture image
 switch = 0  # to turn the camera on and off
 barcode = 0  # indicates barcode's turn
-app = Flask(__name__)
-app.secret_key = "secret key"
 url = 'http://192.168.1.103:8080/video'
 data = []
 
 
 def getItemFromDb(itemID):
     global date
-    items = Item.query.filter_by(Barcode=itemID).first()
+    items1 = Item.query.all()
+    for user in items1:
+        print(user.id)
+
+    items = Inventory.query.filter_by(user_id=current_user.id)
     print(items)
     data.append([items.Item_name, date, items.Category])
-    new_item=Inventory(item_name=items.Item_name,Expiry=date,notification_date=null,Category=items.Category,user_id=current_user.id)
+    new_item = Inventory(item_name=items.Item_name, Expiry=date, notification_date=null, Category=items.Category,
+                         user_id=current_user.id)
     db.session.add(new_item)
     db.session.commit()
+
+
 def popups1():
     global BarOrExp, barcode
     if barcode == 1:
@@ -51,7 +55,7 @@ def capture_exp_images():
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image            #exp479403.jpg
     barcode = 1
-    date = OCR_TD(image_path)
+    date = OCR_TD("./shots/exp701593.jpg")
 
 
 def capture_bar_images():
@@ -63,7 +67,7 @@ def capture_bar_images():
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image
     barcode = 0  # reset barcode turn
-    extracted_Num = extract_barcode(image_path)
+    extracted_Num = extract_barcode("./shots/bar085097.jpg")
     getItemFromDb(extracted_Num)
 
 
@@ -115,4 +119,5 @@ def Capture():
             pass  # unknown
     elif request.method == 'GET':
         return render_template('ExpOrBar.html', flash_message="False")
-    return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date,datas=data)
+    return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date,
+                           datas=data)
