@@ -4,6 +4,25 @@
     {%block content%}
     <h1>Welcome</h1>
     <h2>hello</h2>    
+    <div style="text-align:center;">
+    <button class="button" style="vertical-align:middle">
+        <img src="{{url_for('static',filename = 'images/barcode-scan.png')}}" width="30" height="30" class="bi pe-none me-2"> 
+        <span>Scan </span>
+    </button>
+    <br>
+    <button class="button" style="vertical-align:middle"> 
+        <img src="{{url_for('static',filename = 'images/inspection.png')}}" width="30" height="30" class="bi pe-none me-2"> 
+        <span>Inventory </span>
+    </button>
+    <br>
+    <button class="button" style="vertical-align:middle"> 
+        <img src="{{url_for('static',filename = 'images/rice-bowl.png')}}" width="30" height="30" class="bi pe-none me-2"> 
+        <span>Recipe </span>
+    </button>
+    </div>
+
+
+
 
     {%endblock%}
 </body>
