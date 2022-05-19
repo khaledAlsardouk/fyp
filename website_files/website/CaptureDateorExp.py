@@ -5,34 +5,37 @@ import datetime, time
 from flask_login import current_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import null
-from .import db
-from website_files.website.index import Inventory
-from .models import Item
-from .DateandBarcode import OCR_TD,extract_barcode
+from . import db
+from .models import Item, Inventory
+from .DateandBarcode import OCR_TD, extract_barcode
 
-global capture, switch, frame, BarOrExp
+global capture, switch, frame, BarOrExp, ready, bc
 Capture1 = Blueprint("Capture1", __name__)
 
-DB_NAME = "Items.db"
 date = "HI"
 heading = ("Item name", "Expiry", "notification date", "Category")
+
 capture = 0  # to capture image
 switch = 0  # to turn the camera on and off
 barcode = 0  # indicates barcode's turn
-app = Flask(__name__)
-app.secret_key = "secret key"
+ready = 0
+
 url = 'http://192.168.1.103:8080/video'
 data = []
 
 
-def getItemFromDb(itemID):
-    global date
-    items = Item.query.filter_by(Barcode=itemID).first()
-    print(items)
-    data.append([items.Item_name, date, items.Category])
-    new_item=Inventory(item_name=items.Item_name,Expiry=date,notification_date=null,Category=items.Category,user_id=current_user.id)
+def getItemFromDb():
+    global date, bc, ready
+
+    items = Item.query.filter_by(Barcode=bc).first()
+    data.append([items.Item_name, date,date, items.Category])
+    new_item = Inventory(Item_name=items.Item_name, Expiry=date, notfication_date=date, Category=items.Category,
+                         user_id=current_user.id)
     db.session.add(new_item)
     db.session.commit()
+    ready = 0
+
+
 def popups1():
     global BarOrExp, barcode
     if barcode == 1:
@@ -55,7 +58,7 @@ def capture_exp_images():
 
 
 def capture_bar_images():
-    global frame, capture, switch, barcode
+    global frame, capture, switch, barcode, bc, ready
     capture = 0
     now = (datetime.datetime.now()).strftime("%f")  # generate name based on time
     image_path = './shots/bar' + now + '.jpg'  # name for barcode image
@@ -63,11 +66,11 @@ def capture_bar_images():
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image
     barcode = 0  # reset barcode turn
-    extracted_Num = extract_barcode(image_path)
-    getItemFromDb(extracted_Num)
+    bc = extract_barcode(image_path)
+    ready = 1
 
 
-@Capture1.route('/Capture1/video')
+@Capture1.route('/Capture1/video', methods=['GET', 'POST'])
 @login_required
 def video():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -97,7 +100,7 @@ def generate_frames():  # camera
 
 @Capture1.route("/Capture1", methods=['GET', 'POST'])
 def Capture():
-    global switch, camera
+    global switch, camera, ready
 
     if request.method == 'POST':
         if request.form.get('stop') == 'Stop/Start':
@@ -115,4 +118,7 @@ def Capture():
             pass  # unknown
     elif request.method == 'GET':
         return render_template('ExpOrBar.html', flash_message="False")
-    return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date,datas=data)
+    if ready == 1:
+        getItemFromDb()
+    return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date,
+                           datas=data)
