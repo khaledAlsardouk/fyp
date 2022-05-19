@@ -3,7 +3,7 @@
 
     <body>
       <div class = container>
-        <table class="table table-hover">
+        <table class="table table-hover" style="margin-top: 5%;">
            <tr >
                {%for header in headings %}
                <th scope="col">{{header}}</th>
@@ -18,7 +18,7 @@
                 <td>{{row[4]}}</td>
                 <td>{{row[5]}}</td>
                 <td><form  method="post">
-                  <button type="submit" name="clicked_btn" value={{row[0]}}>delete</button>
+                  <button type="submit" id="button_delete" name="clicked_btn" value={{row[0]}}>X</button>
               </form>
               </td>
             </tr>
