@@ -1,0 +1,36 @@
+#ingrediant{
+
+    width: 15%;
+    height: 10%;
+    margin: 20px;
+    float: left;
+    font-family:Helvetica;
+    font-weight:bolder;
+  
+  }
+
+#recipe_image{
+    width:100%;
+}
+  
+.recipe_button1{
+    background-color: rgb(21, 25, 29); 
+    color: white; 
+
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius:5px;
+}
+
+.recipe_button1:hover {
+    background-color: #696969;
+    color: white;
+  }
+

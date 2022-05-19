@@ -1,0 +1,53 @@
+#video_area {
+    margin:auto;
+    background-color : black;
+    border: 5px solid gray;
+    border-radius: 25px;
+    padding: 20px;
+    height: 70%;
+    width:40%;
+    margin-top:1%;
+
+}
+
+#video_video{
+  height: 100%;
+  width: 100%;
+
+}
+#from_buttons{
+    margin:auto;
+    border:5px;
+    text-align: center;
+  
+  }
+
+.button1 {
+    margin-right:2.5%;
+    margin-left:2.5%;
+    width: 10%;
+    
+    }
+.button2 {
+    margin-right:2.5%;
+    width: 10%;
+    }
+
+.results{
+    margin-top: 2%;
+}
+
+#button_delete{
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+

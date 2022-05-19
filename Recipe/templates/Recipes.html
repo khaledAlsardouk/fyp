@@ -1,0 +1,84 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <!-- head definitions go here -->
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/navbars/">
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/exporbar.css') }}">
+    <link href="{{ url_for('static',filename='css/navbar.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/recipe.css') }}" rel="stylesheet">
+    <script>
+        function bigImg(x) {
+
+          x.style.width = "150%";
+        }
+        
+        function normalImg(x) {
+          x.style.width = "90%";
+        }
+
+        function showStuff(id) {
+            document.getElementById(id).style.display = 'block';
+
+        }
+        function myFunction() {
+            var x = document.getElementById("hide_initial");
+            if (x.style.display === "none") {
+                setTimeout(x.style.display = "block", 300); 
+            }
+            } 
+        
+        </script>
+    </head>
+    <body>
+    <div class = container style="width:60%; margin-top:2%;">
+       <table  class="table table-striped table-dark table-hover" style="text-align:center; ">
+           <tr>
+               <!--
+               {%for header in headings %}
+               <th>{{header}}</th>
+               {% endfor %}-->
+               <th>Header</th>
+           </tr>
+           {%for row  in datas %}
+            <tr >
+              {% for cell in row %}
+                <td>{{cell}}</td>
+              {% endfor %}
+            </tr>
+           {% endfor %}
+       </table>
+    </div>
+    <div class="container"style="width:50%;">
+       <form method="POST" style="text-align:center;" >
+            <label for="Ingredients">Please enter your ingredients:</label><br>
+            <input type="text" id="Ingredients" value="Ingredients" name="Ingredients" >
+            <input type="submit" value="Submit" name="Ingredient_button" class="recipe_button1 " onclick="showStuff('hide_initial')">
+        </form>
+    </div>
+        <div  style=" margin-left:10%; ">
+            {%for i in range(5)%}   
+            <div id="ingrediant">
+                <a href="{{recipe_url[i][0]}}">
+                    <p style="height:50px;" >{{label[i][0]}}</p>
+                </a>
+            <br>
+
+           
+                <img src="{{recipe_pic[i][0]}}" id="recipe_image" class="img-thumbnail" onmouseover="bigImg(this)" onmouseout="normalImg(this)"> 
+            
+                <ul class="list-group" style="margin-top:20px;">{%for ing_lines in ing_line[i]%}
+                    <li class="list-group-item">{{ing_lines}}</li>
+                    {%endfor%}
+                </ul>
+                
+            </div>
+            {%endfor%}
+
+        </div>
+
+    </body>
+</html>
