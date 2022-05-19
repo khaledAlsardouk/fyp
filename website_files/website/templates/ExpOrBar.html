@@ -25,16 +25,16 @@
 </div>
 
 <div class = "container results">
-          <table class="table table-dark table-hover">
-           <tr>
+          <table  class="table" style="color:white;">
+           <tr  style="background-color: blue;">
                {%for header in headings %}
-               <th scope="col">{{header}}</th>
+               <th scope="col" class="bg-primary">{{header}}</th>
                {% endfor %}
            </tr>
            {%for row  in datas %}
-            <tr scope="row">
+            <tr scope="row" style="background-color: rgb(96, 96, 255);">
               {% for cell in row %}
-                <td>{{cell}}</td>
+                <td  style="background-color: rgb(96, 96, 255);">{{cell}}</td>
               {% endfor %}
             </tr>
            {% endfor %}
