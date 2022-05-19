@@ -1,16 +1,19 @@
 {% extends "base.html" %} {% block title %}Login{% endblock %}
     <body>
         {%block content%}
-        <h1>Login</h1>
-        <div>
-            <form method="POST">
-                <label>Email:
-                <input type="email" name="email" value="" placeholder="Email@email.com"/>
-                </label>
-                <label>Password
-                <input type="password" name="passwords" value="" placeholder="password"/>
-                </label>
-                <input type="submit" name="submit2"/>
+        
+        <div class="container"style="width:50%;">
+            <form method="POST" style="margin-top:3%;">
+                <h1>Login</h1>
+                <div class="form-group" style="margin-top:3%;">
+                <label for="exampleInputEmail1">Email:</label>
+                <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" type="email" name="email" value="" placeholder="Email@email.com"/>
+                </div>
+                <div class="form-group" style="margin-top:3%;">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="passwords" value="" placeholder="password" class="form-control" id="exampleInputPassword1" />
+                </div>
+                <input type="submit" name="submit2" class="btn btn-primary" style="margin-top:3%;"/>
             </form>
         </div>
         {%endblock%}
