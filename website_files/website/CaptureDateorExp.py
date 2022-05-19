@@ -26,13 +26,10 @@ data = []
 
 def getItemFromDb():
     global date, bc, ready
-    print("here")
-    print(bc)
 
-    items = Item.query.filter_by(id=1)
-    print(items)
-    data.append([items.Item_name, date, items.Category])
-    new_item = Inventory(item_name=items.Item_name, Expiry=date, notification_date=null, Category=items.Category,
+    items = Item.query.filter_by(Barcode=bc).first()
+    data.append([items.Item_name, date,date, items.Category])
+    new_item = Inventory(Item_name=items.Item_name, Expiry=date, notfication_date=date, Category=items.Category,
                          user_id=current_user.id)
     db.session.add(new_item)
     db.session.commit()
@@ -57,7 +54,7 @@ def capture_exp_images():
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image            #exp479403.jpg
     barcode = 1
-    date = OCR_TD("./shots/exp701593.jpg")
+    date = OCR_TD(image_path)
 
 
 def capture_bar_images():
@@ -69,11 +66,8 @@ def capture_bar_images():
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image
     barcode = 0  # reset barcode turn
-    bc = extract_barcode("./shots/bar085097.jpg")
+    bc = extract_barcode(image_path)
     ready = 1
-    print(ready)
-    print(bc)
-    print("exp")
 
 
 @Capture1.route('/Capture1/video', methods=['GET', 'POST'])
@@ -125,7 +119,6 @@ def Capture():
     elif request.method == 'GET':
         return render_template('ExpOrBar.html', flash_message="False")
     if ready == 1:
-        print("fet")
         getItemFromDb()
     return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date,
                            datas=data)
