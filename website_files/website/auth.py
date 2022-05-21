@@ -21,7 +21,7 @@ def login():
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
 
-                return redirect(url_for('views.home'))
+                return redirect(url_for('Home.index'))
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
@@ -70,5 +70,5 @@ def Sign_up():
             flash('Account created!', category='success')
             login_user(new_user, remember=True)
 
-            return redirect(url_for('views.home'))
+            return redirect(url_for('Home.index'))
     return render_template("Sign-Up.html", user=current_user)

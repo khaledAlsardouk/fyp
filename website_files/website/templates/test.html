@@ -1,6 +1,8 @@
 
  <!DOCTYPE html>
 <html>
+ {% extends 'base.html'%}
+  {% block content  %}
     <head>
         <!-- head definitions go here -->
         <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/navbars/">
@@ -35,14 +37,14 @@
         </script>
     </head>
     <body>
+    <h1>{{ Welcome}}</h1>
     <div class = container style="width:60%; margin-top:2%;">
        <table  class="table table-striped table-dark table-hover" style="text-align:center; ">
            <tr>
-               <!--
+
                {%for header in headings %}
                <th>{{header}}</th>
-               {% endfor %}-->
-               <th>Header</th>
+               {% endfor %}
            </tr>
            {%for row  in datas %}
             <tr >
@@ -52,13 +54,6 @@
             </tr>
            {% endfor %}
        </table>
-    </div>
-    <div class="container"style="width:50%;">
-       <form method="POST" style="text-align:center;" >
-            <label for="Ingredients">Please enter your ingredients:</label><br>
-            <input type="text" id="Ingredients" value="Ingredients" name="Ingredients" >
-            <input type="submit" value="Submit" name="Ingredient_button" class="recipe_button1 " onclick="showStuff('hide_initial')">
-        </form>
     </div>
         <div  style=" margin-left:10%; ">
             {%for i in range(3)%}
@@ -82,4 +77,5 @@
         </div>
 
     </body>
+ {% endblock  %}
 </html>

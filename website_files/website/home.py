@@ -6,7 +6,7 @@ from flask_login import current_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import null
 from . import db
-from .models import Item, Inventory
+from .models import Item, Inventory,User,current_user
 from flask import Flask, render_template, request, flash, redirect
 import datetime
 import requests
@@ -14,14 +14,14 @@ from datetime import datetime
 from datetime import timedelta
 global count
 
-test = Blueprint("test", __name__)
+Home = Blueprint("Home", __name__)
 
 IDS = {-1}
 APP_ID = "6320241"
 API_KEY = "c82513b996msh91aa04854473575p15db2ajsn8d757b1e5a57"
 URL = f'https://api.edamam.com/search?/app_id=${APP_ID}&app_key=${API_KEY}'
 
-heading = "Item name"
+heading = ("Expiring Soon" , "Date")
 data = []
 recipe_pic = [[] for i in range(5)]
 recipe_array = [[] for i in range(5)]
@@ -48,11 +48,8 @@ def Get_Time(expiry, current_date):
         return True
 
 
-@test.before_app_first_request
+@Home.before_app_first_request
 def Get_Recipe_From_User():
-    items = Inventory.query.all()
-    for item in items:
-        data.append([item.Item_name])
     success = False
     global index
     index = 0
@@ -63,8 +60,8 @@ def Get_Recipe_From_User():
         this_day = datetime.now() + timedelta(days=7)
         for item in items:
             if item.Category == "food" and (Get_Time(item.Expiry, this_day) == True):
-                print(item.Item_name)
                 ingredients.append(item.Item_name)
+                data.append([item.Item_name,item.Expiry])
         recipes = []
         for ing in ingredients:
             recipe_data = make_request(get_url_q(ing, to=1))
@@ -158,9 +155,14 @@ def get_url_r(uri):
     return URL + f'&r={uri}'
 
 
-@test.route('/test', methods=['GET', 'POST'])
+@Home.route('/', methods=['GET', 'POST'])
 def index():
-    global count
-    print(index)
-    return render_template("test.html", headings=heading, datas=data, label=recipe_array, ing_line=ingredient_line,
-                           recipe_url=recipe_url, recipe_pic=recipe_pic,recipe_count=index)
+    try:
+        user = User.query.filter_by(id=current_user.id).first()
+        Message = "Welcome! " + user.First_name + " " + user.Last_name
+        return render_template("test.html", headings=heading, datas=data, label=recipe_array, ing_line=ingredient_line,
+                           recipe_url=recipe_url, recipe_pic=recipe_pic,recipe_count=index,Welcome= Message)
+    except:
+        return render_template("test.html", headings=heading, datas=data, label=recipe_array, ing_line=ingredient_line,
+                               recipe_url=recipe_url, recipe_pic=recipe_pic, recipe_count=index, Welcome="Message")
+
