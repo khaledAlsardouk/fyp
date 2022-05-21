@@ -17,7 +17,7 @@ data = []
 def GetALLItem():
     items = Inventory.query.filter_by(user_id=current_user.id)
     for item in items:
-        data.append([str(item.id), item.Item_name, item.Expiry, item.notfication_date, item.Category, current_user.id])
+        data.append([str(item.id), item.Item_name, item.Expiry,  item.Category, current_user.id])
 
 
 

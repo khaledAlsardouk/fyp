@@ -17,12 +17,16 @@ def create_app():
     from .auth import auth
     from .CaptureDateorExp import Capture1
     from .inventory import Inventory1
+    from .recipes import recipe
+    from .test import test
     from .models import User,Item, Inventory
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(Capture1, url_prefix='/')
     app.register_blueprint(Inventory1, url_prefix='/')
+    app.register_blueprint(recipe, url_prefix='/')
+    app.register_blueprint(test, url_prefix='/')
 
     create_database(app)
 

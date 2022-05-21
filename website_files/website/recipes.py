@@ -1,40 +1,25 @@
-import json
-from os import path
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin, current_user
+from unicodedata import category
+from flask import Flask, render_template, Response, request, flash, Blueprint
+import cv2
+import datetime, time
+from flask_login import current_user, login_required
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import null
+from . import db
+from .models import Item, Inventory
 from flask import Flask, render_template, request, flash, redirect
 import datetime
 import requests
 from datetime import date
 import urllib
 from random import randint
-import sqlite3 as sql
 
-FILENAME = "test_recipe_03.db"
-con = sql.connect(FILENAME)
-C = con.cursor()
-app = Flask(__name__)
-
-app.secret_key = "blue red green k"
+recipe = Blueprint("recipe", __name__)
 
 IDS = {-1}
 APP_ID = "6320241"
 API_KEY = "c82513b996msh91aa04854473575p15db2ajsn8d757b1e5a57"
 URL = f'https://api.edamam.com/search?/app_id=${APP_ID}&app_key=${API_KEY}'
-db = SQLAlchemy(app)
-DB_NAME = "test.db"
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-
-
-class Inventory(db.Model):
-    __tablename__ = "inventory"  # to be user name using cookie or login manager
-    id = db.Column(db.Integer, primary_key=True)
-    Item_name = db.Column(db.String(255), nullable=False)
-    Expiry = db.Column(db.DateTime, nullable=False)
-    notfication_date = db.Column(db.DateTime, nullable=False, unique=False)
-    Category = db.Column(db.String(255), nullable=False)
-
 
 heading = "Item name"
 data = []
@@ -48,13 +33,7 @@ select = 0
 recipe_data = []
 
 
-def create_database(app):
-    if not path.exists('/' + DB_NAME):
-        db.create_all(app=app)
-        print('Created Database!')
-
-
-@app.before_first_request
+@recipe.before_app_first_request
 def GetALLItem():
     items = Inventory.query.all()
     for item in items:
@@ -73,24 +52,9 @@ def Get_Recipe_From_User():
         if len(recipe_data) > 0:
             success = True
     index = display_recipe_labels(recipe_data, index)
-    # Allows user to request 20 more recipes with same keyword
-    # if select == 'm' and index == 20:
-    #    _from = 20
-    #    to = 40
-    #    data2 = make_request(get_url_q(ingredients, _from, to))
-    #    data2 = data2['hits']
-    #    index = display_recipe_labels(data2, index)
-    # join the data of both requests together
-    #    data += data2
-    # selection has not yet been made
-    #    select = -1
 
 
 def select_recipe(data, max_index):
-    """
-    Select & save unsaved recipe.
-    """
-    # If select == -1, no selection has been made
     select = Get_Index()
     invalid = True
     while invalid:
@@ -116,19 +80,6 @@ def select_recipe(data, max_index):
     curr_recipe = filter_response(recipe)
 
     display_recipe_dict(curr_recipe)
-    # if input("Would you like to save? (y/n) ") == 'y':
-    #    save_recipe(curr_recipe)
-    # else:
-    #    print()
-    #    print("1) Select another recipe")
-    #    print("2) Main menu")
-    #    command = input("\t>> ")
-
-
-#     if command == '1':
-#          select_recipe(data, max_index, -1)
-#       else:
-#            print()
 
 
 def save_recipe(curr_recipe):
@@ -254,30 +205,25 @@ def get_url_r(uri):
     return URL + f'&r={uri}'
 
 
-@app.route('/Recipes', methods=['POST', 'GET'])
+@recipe.route('/recipe/Recipes', methods=['POST', 'GET'])
 def Get_Ingredient():
     if request.method == 'POST':
         ingredient = request.form['Ingredients']
         return ingredient
 
 
-@app.route('/Recipes', methods=['POST', 'GET'])
+@recipe.route('/recipe/Recipes', methods=['POST', 'GET'])
 def Get_Index():
     if request.method == 'POST':
         select = request.form['select']
         return select
 
 
-@app.route('/', methods=['GET', 'POST'])
+@recipe.route('/recipe', methods=['GET', 'POST'])
 def index():
-    create_database(app)
     if request.method == 'POST':
         Get_Recipe_From_User()
         return render_template("Recipes.html", headings=heading, datas=data, label=recipe_array,
                                ing_line=ingredient_line, recipe_url=recipe_url, recipe_pic=recipe_pic)
     return render_template("Recipes.html", headings=heading, datas=data, label=recipe_array, ing_line=ingredient_line,
                            recipe_url=recipe_url, recipe_pic=recipe_pic)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
