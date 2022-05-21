@@ -12,8 +12,8 @@ from .DateandBarcode import OCR_TD, extract_barcode
 global capture, switch, frame, BarOrExp, ready, bc
 Capture1 = Blueprint("Capture1", __name__)
 
-date = "HI"
-heading = ("Item name", "Expiry", "notification date", "Category")
+date = ""
+heading = ("Item name", "Expiry",  "Category")
 
 capture = 0  # to capture image
 switch = 0  # to turn the camera on and off
@@ -25,14 +25,17 @@ data = []
 
 
 def getItemFromDb():
-    global date, bc, ready
+    global date, bc, ready,capture,switch,barcode
 
     items = Item.query.filter_by(Barcode=bc).first()
-    data.append([items.Item_name, date,date, items.Category])
+    data.append([items.Item_name, date, items.Category])
     new_item = Inventory(Item_name=items.Item_name, Expiry=date,  Category=items.Category,
                          user_id=current_user.id)
     db.session.add(new_item)
     db.session.commit()
+    capture = 0  # to capture image
+    switch = 0  # to turn the camera on and off
+    barcode = 0  # indicates barcode's turn
     ready = 0
 
 

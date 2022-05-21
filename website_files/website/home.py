@@ -162,8 +162,17 @@ def get_url_r(uri):
 @Home.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
+    global data,recipe_data,recipe_pic,recipe_array,recipe_label,ingredient_line,recipe_url,index,select
     try:
-
+        data = []
+        recipe_pic = [[] for i in range(5)]
+        recipe_array = [[] for i in range(5)]
+        recipe_label = [[] for i in range(5)]
+        ingredient_line = [[] for i in range(5)]
+        recipe_url = [[] for i in range(5)]
+        index = 0
+        select = 0
+        recipe_data = []
         Get_Recipe_From_User()
         user = User.query.filter_by(id=current_user.id).first()
         Message = "Welcome! " + user.First_name + " " + user.Last_name
