@@ -1,11 +1,12 @@
 from os import path
+from requests import delete
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, current_user, login_required, user_logged_in
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request, flash, redirect, Blueprint
 import datetime
 from .models import Inventory
-
+from . import db
 Inventory1 = Blueprint("Inventory", __name__)
 
 choice = 0
@@ -31,9 +32,9 @@ def inventory():
     if request.method == 'POST':
         data = []
         print(request.form['clicked_btn'])
-        delete = Inventory.query.filter_by(id=request.form['clicked_btn']).first()
-        Inventory.delete(delete)
-        Inventory.commit()
+        delete=request.form['clicked_btn']
+        Inventory.query.filter_by(id=delete).delete()
+        db.session.commit()
         GetALLItem()
         return render_template("Inventory.html", headings=heading, datas=data)
 
