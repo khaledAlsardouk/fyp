@@ -137,7 +137,7 @@ def create_database(app):
 def GetALLItem():
     items = Inventory.query.all()
     for item in items:
-        data.append([item.Item_name, item.Expiry.date(), item.notfication_date.date(), item.Category])
+        data.append([item.Item_name, item.Expiry.date(), item.notification_date.date(), item.Category])
 
 
 @app.route('/inventory', methods=['GET', 'POST'])
