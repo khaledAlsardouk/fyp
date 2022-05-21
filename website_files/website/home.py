@@ -48,28 +48,32 @@ def Get_Time(expiry, current_date):
         return True
 
 
-@Home.before_app_first_request
+
 def Get_Recipe_From_User():
-    success = False
+
     global index
     index = 0
     global recipe_data
-    while not success:
-        ingredients = []
-        items = Inventory.query.all()
-        this_day = datetime.now() + timedelta(days=7)
-        for item in items:
-            if item.Category == "food" and (Get_Time(item.Expiry, this_day) == True):
+    ingredients = []
+    items = Inventory.query.filter_by(user_id=current_user.id).all()
+    this_day = datetime.now() + timedelta(days=7)
+    if items is not None:
+      for item in items:
+           if item.Category == "food" and (Get_Time(item.Expiry, this_day) == True):
                 ingredients.append(item.Item_name)
                 data.append([item.Item_name,item.Expiry])
-        recipes = []
-        for ing in ingredients:
-            recipe_data = make_request(get_url_q(ing, to=1))
-            recipes.append(recipe_data['hits'])
-        if len(recipes) > 0:
-            success = True
-    global count
+    recipes = []
+    for ing in ingredients:
+         recipe_data = make_request(get_url_q(ing, to=1))
+         recipes.append(recipe_data['hits'])
+
+
     index = display_recipe_labels(recipes, index, len(recipes))
+
+
+
+
+
 
 
 def display_recipe_labels(data, index, count):
@@ -156,13 +160,16 @@ def get_url_r(uri):
 
 
 @Home.route('/', methods=['GET', 'POST'])
+@login_required
 def index():
     try:
+
+        Get_Recipe_From_User()
         user = User.query.filter_by(id=current_user.id).first()
         Message = "Welcome! " + user.First_name + " " + user.Last_name
         return render_template("test.html", headings=heading, datas=data, label=recipe_array, ing_line=ingredient_line,
-                           recipe_url=recipe_url, recipe_pic=recipe_pic,recipe_count=index,Welcome= Message)
+                           recipe_url=recipe_url, recipe_pic=recipe_pic,recipe_count=index,Welcome= Message,index=index)
     except:
-        return render_template("test.html", headings=heading, datas=data, label=recipe_array, ing_line=ingredient_line,
-                               recipe_url=recipe_url, recipe_pic=recipe_pic, recipe_count=index, Welcome="Message")
+        return render_template("test.html", headings=heading, datas=[], label=[], ing_line=[],
+                               recipe_url=[], recipe_pic=[], recipe_count=0, Welcome="Message",index=0)
 

@@ -29,7 +29,7 @@ def getItemFromDb():
 
     items = Item.query.filter_by(Barcode=bc).first()
     data.append([items.Item_name, date,date, items.Category])
-    new_item = Inventory(Item_name=items.Item_name, Expiry=date, notfication_date=date, Category=items.Category,
+    new_item = Inventory(Item_name=items.Item_name, Expiry=date,  Category=items.Category,
                          user_id=current_user.id)
     db.session.add(new_item)
     db.session.commit()
