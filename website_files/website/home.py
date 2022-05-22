@@ -13,6 +13,7 @@ import requests
 from datetime import datetime
 from datetime import timedelta
 global count
+from random import randint
 
 Home = Blueprint("Home", __name__)
 
@@ -53,6 +54,7 @@ def Get_Recipe_From_User():
 
     global index
     index = 0
+    x = randint(0,20)
     global recipe_data
     ingredients = []
     items = Inventory.query.filter_by(user_id=current_user.id).all()
@@ -64,7 +66,7 @@ def Get_Recipe_From_User():
                 data.append([item.Item_name,item.Expiry])
     recipes = []
     for ing in ingredients:
-         recipe_data = make_request(get_url_q(ing, to=1))
+         recipe_data = make_request(get_url_q(ing,_from=x, to=x+1))
          recipes.append(recipe_data['hits'])
 
 

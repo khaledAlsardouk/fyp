@@ -35,19 +35,20 @@ recipe_data = []
 
 @recipe.before_app_first_request
 def GetALLItem():
-    items = Inventory.query.all()
+    items = Inventory.query.filter_by(user_id=current_user.id).all()
     for item in items:
         data.append([item.Item_name])
 
 
 def Get_Recipe_From_User():
+    x = randint(0,20)
     success = False
     global index
     index = 0
     global recipe_data
     while not success:
         ingredients = Get_Ingredient()
-        recipe_data = make_request(get_url_q(ingredients, to=5))
+        recipe_data = make_request(get_url_q(ingredients,_from = x , to=x+5))
         recipe_data = recipe_data['hits']
         if len(recipe_data) > 0:
             success = True
