@@ -26,6 +26,10 @@ data = []
 
 def getItemFromDb():
     global date, bc, ready,capture,switch,barcode
+    capture = 0  # to capture image
+    switch = 0  # to turn the camera on and off
+    barcode = 0  # indicates barcode's turn
+    ready = 0
 
     items = Item.query.filter_by(Barcode=bc).first()
     data.append([items.Item_name, date, items.Category])
@@ -33,11 +37,6 @@ def getItemFromDb():
                          user_id=current_user.id)
     db.session.add(new_item)
     db.session.commit()
-    capture = 0  # to capture image
-    switch = 0  # to turn the camera on and off
-    barcode = 0  # indicates barcode's turn
-    ready = 0
-
 
 def popups1():
     global BarOrExp, barcode
@@ -60,17 +59,20 @@ def capture_exp_images():
     date = OCR_TD(image_path)
 
 
+
 def capture_bar_images():
-    global frame, capture, switch, barcode, bc, ready
-    capture = 0
+    global frame, capture, switch, barcode, bc, ready,date
     now = (datetime.datetime.now()).strftime("%f")  # generate name based on time
     image_path = './shots/bar' + now + '.jpg'  # name for barcode image
-    switch = 0  # turn off switch
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image
-    barcode = 0  # reset barcode turn
     bc = extract_barcode(image_path)
-    ready = 1
+    date= bc
+    if bc != 'Barcode Not Detected or your barcode is blank/corrupted!':
+        barcode = 0
+        switch = 0
+        capture = 0
+        ready = 1
 
 
 @Capture1.route('/Capture1/video', methods=['GET', 'POST'])
