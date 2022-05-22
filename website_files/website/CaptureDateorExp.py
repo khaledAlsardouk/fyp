@@ -1,4 +1,5 @@
 from unicodedata import category
+from unittest import result
 from flask import Flask, render_template, Response, request, flash, Blueprint
 import cv2
 import datetime, time
@@ -20,8 +21,9 @@ switch = 0  # to turn the camera on and off
 barcode = 0  # indicates barcode's turn
 ready = 0
 
-url = 'http://192.168.1.103:8080/video'
+url = 'http://192.168.1.104:8080/video'
 data = []
+show=[]
 
 
 def getItemFromDb():
@@ -48,7 +50,7 @@ def popups1():
 
 
 def capture_exp_images():
-    global frame, capture, switch, barcode, heading, date
+    global frame, capture, switch, barcode, heading, date,show
     capture = 0
     now = (datetime.datetime.now()).strftime("%f")  # generate name based on time
     image_path = './shots/exp' + now + '.jpg'  # name for exp image
@@ -57,17 +59,19 @@ def capture_exp_images():
     cv2.imwrite(image_path, frame)  # save barcode image            #exp479403.jpg
     barcode = 1
     date = OCR_TD(image_path)
+    show=date
 
 
 
 def capture_bar_images():
-    global frame, capture, switch, barcode, bc, ready,date
+    global frame, capture, switch, barcode, bc, ready,date,show
     now = (datetime.datetime.now()).strftime("%f")  # generate name based on time
     image_path = './shots/bar' + now + '.jpg'  # name for barcode image
     camera.release()  # turn off camera
     cv2.imwrite(image_path, frame)  # save barcode image
     bc = extract_barcode(image_path)
-    date= bc
+    print(bc)
+    show= bc
     if bc != 'Barcode Not Detected or your barcode is blank/corrupted!':
         barcode = 0
         switch = 0
@@ -125,5 +129,5 @@ def Capture():
         return render_template('ExpOrBar.html', flash_message="False")
     if ready == 1:
         getItemFromDb()
-    return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=date,
+    return render_template('ExpOrBar.html', flash_message="True", Message=popups1(), headings=heading, Date=show,
                            datas=data)

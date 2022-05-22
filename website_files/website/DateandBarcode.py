@@ -3,6 +3,7 @@ import cv2
 import re
 import dateutil.parser as dparser
 from pyzbar.pyzbar import decode
+from ordered_set import OrderedSet
 
 
 def find_date_true(text):
@@ -54,16 +55,16 @@ def OCR_TD(IMAGE_PATH):
     if len(result1) == 1:
         final_result = result1[0]
     elif len(result1) == 0:
-        b_set = set(result2)
-        c_set = set(result3)
+        b_set = OrderedSet(result2)
+        c_set = OrderedSet(result3)
         try:
             final_result = c_set.intersection(b_set).pop()
         except:
             final_result = 'no date found'
     elif len(result1) > 1:
-        a_set = set(result1)
-        b_set = set(result2)
-        c_set = set(result3)
+        a_set = OrderedSet(result1)
+        b_set = OrderedSet(result2)
+        c_set = OrderedSet(result3)
         try:
             final_result = c_set.intersection(b_set.intersection(a_set)).pop()
         except:
