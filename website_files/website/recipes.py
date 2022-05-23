@@ -33,7 +33,7 @@ select = 0
 recipe_data = []
 
 
-@recipe.before_app_first_request
+
 def GetALLItem():
     items = Inventory.query.filter_by(user_id=current_user.id).all()
     for item in items:
@@ -222,6 +222,9 @@ def Get_Index():
 
 @recipe.route('/recipe', methods=['GET', 'POST'])
 def index():
+    global data
+    data=[]
+    GetALLItem()
     if request.method == 'POST':
         Get_Recipe_From_User()
         return render_template("Recipes.html", headings=heading, datas=data, label=recipe_array,

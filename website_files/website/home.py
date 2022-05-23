@@ -41,8 +41,8 @@ def Get_Time(expiry, current_date):
     except:
         x = 0
     else:
-        expiry = datetime.strptime(str(expiry), "%Y-%m-%d %H:%M:%S.%f")
-        current_date = datetime.strptime(str(current_date), "%Y-%m-%d %H:%M:%S.%f")
+        expiry = datetime.strptime(str(expiry), "%Y-%m-%d %H:%M:%S")
+        current_date = datetime.strptime(str(current_date), "%Y-%m-%d %H:%M:%S")
     if expiry > current_date:
         return False
     else:
