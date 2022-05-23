@@ -14,6 +14,7 @@ from datetime import datetime
 from datetime import timedelta
 global count
 from random import randint
+from dateutil import parser
 
 Home = Blueprint("Home", __name__)
 
@@ -36,13 +37,14 @@ count=0
 
 def Get_Time(expiry, current_date):
     try:
-        expiry = datetime.strptime(str(expiry), "%Y-%m-%d")
-        current_date = datetime.strptime(str(current_date), "%Y-%m-%d")
-    except:
-        x = 0
-    else:
+        expiry = parser.parse(str(expiry))
+        current_date = parser.parse(str(current_date))
+    except Exception as inst:
+        print(type(inst))    # the exception instance
+        print(inst.args)     # arguments stored in .args
+        print(inst)
         expiry = datetime.strptime(str(expiry), "%Y-%m-%d %H:%M:%S")
-        current_date = datetime.strptime(str(current_date), "%Y-%m-%d %H:%M:%S")
+        current_date = datetime.strptime(str(current_date), "%Y-%m-%d %H:%M:%S.f")
     if expiry > current_date:
         return False
     else:
